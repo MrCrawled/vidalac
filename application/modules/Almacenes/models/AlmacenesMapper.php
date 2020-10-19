@@ -132,7 +132,7 @@ class Almacenes_Model_AlmacenesMapper extends Rad_Mapper
         $cantidadPaletfinal    = $cantidadRemito % $cantidadPorMmi;
         $fechaVencFormateada   = date('d/m/Y', strtotime(str_replace('T', '', $loteVencimiento)));
         $fechaElabFormateada   = date('d/m/Y', strtotime(str_replace('T', '', $loteElaboracion)));
-
+/*
         if ($cantidadPaletsEnteros == 0) {
             $confTxt = "Paletizara <b>$cantidadRemito</b> unidades en <b>1</b> palet de <b>$cantidadPaletfinal</b>";
         } else {
@@ -147,7 +147,7 @@ class Almacenes_Model_AlmacenesMapper extends Rad_Mapper
         if (Rad_Confirm::confirm( $confTxt, _FILE_._LINE_, array('includeCancel' => false)) == 'yes') {
             
         }
-
+*/
         // terminadas las validaciones ejecuto...
 
         if ($requiereLote) {

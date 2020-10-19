@@ -1,0 +1,21 @@
+CREATE TABLE `personasretencionesganancias` (
+  `Id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `Persona` int(11) unsigned NOT NULL,
+  `ConceptoImpositivo` int(11) unsigned NOT NULL,
+  `TipoInscripcionGanancia` int(11) unsigned NOT NULL,
+  `TipoRetencionGanancia` int(11) unsigned DEFAULT NULL,
+  `FechaVencimientoCertificadoDeExclusion` date DEFAULT NULL,
+  `FechaAlta` datetime DEFAULT NULL,
+  `FechaUltCambio` datetime DEFAULT NULL,
+  `FechaBaja` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id`),
+  UNIQUE KEY `IDXUQ_PersonasIG_Persona_Concepto` (`Persona`,`ConceptoImpositivo`,`TipoInscripcionGanancia`,`TipoRetencionGanancia`) USING BTREE,
+  KEY `IDX_PersonasIG_Persona` (`Persona`) USING BTREE,
+  KEY `IDX_PersonasIG_ConceptoImpositivo` (`ConceptoImpositivo`) USING BTREE,
+  KEY `IDX_PersonasIG_TipoInscripcionGanancia` (`TipoInscripcionGanancia`) USING BTREE,
+  KEY `IDX_PersonasIG_TipoRetencionGanancia` (`TipoRetencionGanancia`) USING BTREE,
+  CONSTRAINT `FK_PersonasIG_ConceptoImpositivo` FOREIGN KEY (`ConceptoImpositivo`) REFERENCES `conceptosimpositivos` (`Id`),
+  CONSTRAINT `FK_PersonasIG_Persona` FOREIGN KEY (`Persona`) REFERENCES `personas` (`Id`),
+  CONSTRAINT `FK_PersonasIG_TipoInscripcionGanancia` FOREIGN KEY (`TipoInscripcionGanancia`) REFERENCES `tiposdeinscripcionesganancias` (`Id`),
+  CONSTRAINT `FK_PersonasIG_TipoRetencionGanancia` FOREIGN KEY (`TipoRetencionGanancia`) REFERENCES `tiposdeimpuestosgananciasretenciones` (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8

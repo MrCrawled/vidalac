@@ -252,7 +252,7 @@ class Almacenes_Model_DbTable_RemitosDeSalidas extends Almacenes_Model_DbTable_R
 
             $remitoNro = $this->_db->fetchOne("Select fNumeroCompleto($id,'')");
 
-            //$data = array();
+            $data = array();
             $data['Despachado'] = 1;
             Rad_Db_Table::update($data, "Id = $id");
             Rad_Log::user("Remitos: Despacho el Remito $remitoNro");

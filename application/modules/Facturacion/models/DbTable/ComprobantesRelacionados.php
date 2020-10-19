@@ -180,16 +180,14 @@ class Facturacion_Model_DbTable_ComprobantesRelacionados extends Rad_Db_Table
                             $MontoPorAsignar = $MontoPagado + $Comp_qResta;
                             foreach ($arrSuman as $row) {
                                 // Debo ver si exitan comprobantes que no se utilice nada
-                                if ($MontoPorAsignar == 0) {
-                                    throw new Rad_Db_Table_Exception("Existen comprobantes a los que no se le afectara nada del pago, retirelos para continuar.");
-                                } else {
+                    
                                     if ($MontoPorAsignar > $row['Disponible']) {
                                         $MontoPorAsignar = $MontoPorAsignar - $row['Disponible'];
                                         $Asignar = $row['Disponible'];
                                     } else {
                                         $Asignar = $MontoPorAsignar;
                                         $MontoPorAsignar = 0;
-                                    }
+
                                     // Armo el array para updatear el valor monto asociado de la relacion
                                     $where= "Id=".$row['Id'];
                                     $data['MontoAsociado'] = $Asignar;

@@ -284,13 +284,18 @@
                         <property name="name">Monto</property>
                         <property name="dataType">decimal</property>
                     </structure>
-                    <structure>
+                     <structure>
                         <property name="position">18</property>
-                        <property name="name">NroConstancia</property>
+                        <property name="name">TipoOperacionDescripcion</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">19</property>
+                        <property name="name">NroConstancia</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
                         <property name="name">Anulado</property>
                         <property name="dataType">integer</property>
                     </structure>
@@ -400,14 +405,20 @@
                     <property name="nativeName">Monto</property>
                     <property name="dataType">decimal</property>
                 </structure>
-                <structure>
+                 <structure>
                     <property name="position">18</property>
+                    <property name="name">TipoOperacionDescripcion</property>
+                    <property name="nativeName">TipoOperacionDescripcion</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
                     <property name="name">NroConstancia</property>
                     <property name="nativeName">NroConstancia</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">19</property>
+                    <property name="position">20</property>
                     <property name="name">Anulado</property>
                     <property name="dataType">integer</property>
                 </structure>
@@ -792,14 +803,22 @@
             </row>
         </grid>
         <grid id="77">
-            <property name="height">0.3333333333333333in</property>
             <column id="78"/>
             <row id="79">
-                <property name="height">0.3333333333333333in</property>
                 <cell id="80">
-                    <label id="81">
-                        <text-property name="text">Tipo de Operación :  Pago a proveedores</text-property>
-                    </label>
+                    <data id="934">
+                        <property name="dataSet">RetencionesCabecera</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">TipoOperacionDescripcion</property>
+                                <text-property name="displayName">Descripcion</text-property>
+                                <expression name="expression" type="javascript">BirtStr.concat("Tipo de operacion : ", dataSetRow["TipoOperacionDescripcion"])</expression>
+                                <property name="dataType">string</property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <property name="resultSetColumn">TipoOperacionDescripcion</property>
+                    </data>
                 </cell>
             </row>
         </grid>

@@ -19,17 +19,6 @@ class Almacenes_Model_DbTable_RemitosSinRemito extends Almacenes_Model_DbTable_R
     );
 
 
-
-
-
-   protected $_sort = array(
-
-        'FechaEmision DESC'
-
-    );
-
-
-
     // Inicio  protected $_referenceMap --------------------------------------------------------------------------
 
     protected $_referenceMap = array(

@@ -120,6 +120,8 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             this
         );
 
+        // Proveedores -> Impositivo -> Impuestos Ganancias
+        this.gridProveedoresImpuestosGanancias = Ext.ComponentMgr.create(<?=$this->gridProveedoresImpuestosGanancias?>);
 
         // Proveedores -> Impositivo -> Conceptos Impositivos
         this.gridProveedoresConceptosImpositivos = Ext.ComponentMgr.create(<?=$this->gridProveedoresConceptosImpositivos?>);
@@ -201,7 +203,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     deferredRender : false,
                     title:'Impositivo',
                     activeTab: 0,
-                    items: [ this.gridProveedoresIngresosBrutos, this.gridProveedoresConceptosImpositivos, this.gridProveedoresValoresConceptosImpositivos ]
+                    items: [ this.gridProveedoresIngresosBrutos, this.gridProveedoresImpuestosGanancias, this.gridProveedoresConceptosImpositivos, this.gridProveedoresValoresConceptosImpositivos ]
                 },
 
                 this.gridProveedoresCuentasBancarias,

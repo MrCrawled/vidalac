@@ -12,11 +12,11 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
     /**
      * Valores Permanentes
      *
-     * 'TipoDeComprobante' => '19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 64, 65, 66, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88'
+     * 'TipoDeComprobante' => '19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88'
      *
      */
       protected $_permanentValues = array(
-        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57, 64, 65, 66, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88)
+        'TipoDeComprobante' => array(19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 47, 49, 50, 51, 52, 53, 54, 55, 56, 57,64, 65, 66, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88)
     );
 
     protected $_sort = array(
@@ -539,7 +539,7 @@ class Facturacion_Model_DbTable_Facturas extends Facturacion_Model_DbTable_Compr
     }
 
     public function fetchFacturas($where = null, $order = null, $count = null, $offset = null) {
-        $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40, 64)";
+        $condicion = "Comprobantes.Cerrado = 1 and Comprobantes.Anulado = 0 and Comprobantes.TipoDeComprobante in (19, 20, 21, 22, 23, 33, 34, 35, 36, 41, 42, 43, 44, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 38, 39, 40,64)";
         $this->_addCondition($where, $condicion);
         return parent::fetchAll($where, $order, $count, $offset);
     }

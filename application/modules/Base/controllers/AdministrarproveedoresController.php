@@ -82,6 +82,26 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         );
         unset($config);
 
+        
+        /**
+         * Grilla Impositivos -> Impuestos Ganancias Proveedores
+         */
+        $config->abmWindowTitle = 'Imp. Ganancias Proveedores”';
+        $config->abmWindowWidth = 760;
+        $config->abmWindowHeight = 400;
+        $config->title = 'Imp. Ganancias Proveedores';
+        $config->loadAuto = false;
+        $config->id = $this->getName() . '_GridProveedoresImpuestosGanancias';
+        $config->fetch = 'ParaProveedores';
+        $config->iniSection = 'minimoProveedor';
+        $this->view->gridProveedoresImpuestosGanancias = $this->view->radGrid(
+            'Base_Model_DbTable_ProveedoresImpuestosGanancias',
+            $config,
+            'abmeditor'
+        );
+        unset($config);
+
+
         /**
          * Grilla Impositivos -> Conceptos Impositivos
          */

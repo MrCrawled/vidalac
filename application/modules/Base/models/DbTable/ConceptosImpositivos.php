@@ -91,8 +91,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeConceptos',
             'refColumns'        => 'Id'
-        )
-        ,
+        ),
         'TiposDeMontosMinimos' => array(
             'columns'           => 'TipoDeMontoMinimo',
             'refTableClass'     => 'Base_Model_DbTable_TiposDeMontosMinimos',
@@ -101,8 +100,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
             'comboSource'       => 'datagateway/combolist',
             'refTable'          => 'TiposDeMontosMinimos',
             'refColumns'        => 'Id'
-        )
-        ,
+        ),
         'Jurisdicciones' => array(
             'columns'           => 'Jurisdiccion',
             'refTableClass'     => 'Afip_Model_DbTable_AfipProvincias',
@@ -118,7 +116,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
     protected $_validators = array(
         'Descripcion' => array(
             'NotEmpty',
-            'allowEmpty'=>false,
+            'allowEmpty' => false,
             array(
                 'Db_NoRecordExists',
                 'ConceptosImpositivos',
@@ -166,7 +164,8 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
      *
      * @return int
      */
-    public function esIVA($idConcepto) {
+    public function esIVA($idConcepto)
+    {
 
         $R = $this->find($idConcepto)->current();
         if (!$R) {
@@ -180,7 +179,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = " EsRetencion = 0 and EsPercepcion = 0 and EsIVA = 1 and EnUso = 1 ";
         $order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchEsIVACompra($where = null, $order = null, $count = null, $offset = null)
@@ -188,7 +187,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = " ParaCompra = 1 and EsRetencion = 0 and EsPercepcion = 0 and EsIVA = 1 and EnUso = 1 ";
         $order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchEsIVAVenta($where = null, $order = null, $count = null, $offset = null)
@@ -196,7 +195,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = " ParaVenta = 1 and EsRetencion = 0 and EsPercepcion = 0 and EsIVA = 1 and EnUso = 1 ";
         $order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchNoEsIva($where = null, $order = null, $count = null, $offset = null)
@@ -204,7 +203,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "EsIVA = 0";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaCompras($where = null, $order = null, $count = null, $offset = null)
@@ -212,7 +211,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "ParaCompra = 1 and EsIVA = 0 and EnUso = 1";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaPagos($where = null, $order = null, $count = null, $offset = null)
@@ -220,7 +219,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "ParaPago = 1 and EsIVA = 0 and EnUso = 1";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaVentas($where = null, $order = null, $count = null, $offset = null)
@@ -228,7 +227,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "ParaVenta = 1 and EsIVA = 0 and EnUso = 1";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaCobros($where = null, $order = null, $count = null, $offset = null)
@@ -236,29 +235,37 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "ParaCobro = 1 and EsIVA = 0 and EnUso = 1";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchIbPercepcionesR($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = " TipoDeConcepto = 3 and EsPercepcion = 1 and ConceptosImpositivos.Descripcion like '%(R)%' and EsIVA = 0 and EnUso = 1 ";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchIbRetencionesR($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = " TipoDeConcepto = 3 and EsRetencion = 1 and ConceptosImpositivos.Descripcion like '%(R)%' and EsIVA = 0 and EnUso = 1 ";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
+
+    public function fetchRetencionesGananciasR($where = null, $order = null, $count = null, $offset = null)
+    {
+        $condicion = " TipoDeConcepto = 2 and EsRetencion = 1 and ConceptosImpositivos.Descripcion like '%(R)%' and EsIVA = 0 and EnUso = 1 ";
+        $where = $this->_addCondition($where, $condicion);
+        return parent::fetchAll($where, $order, $count, $offset);
+    }
+
 
     public function fetchParaProveedores($where = null, $order = null, $count = null, $offset = null)
     {
         $condicion = "(ParaPago = 1 or ParaCompra=1) and EsIVA = 0 and EnUso = 1";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaClientes($where = null, $order = null, $count = null, $offset = null)
@@ -266,7 +273,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "(ParaPago = 1 or ParaVenta=1) and EsIVA = 0 and EnUso = 1";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaProveedoresSinRetencionesR($where = null, $order = null, $count = null, $offset = null)
@@ -274,7 +281,7 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "(ParaPago = 1 or ParaCompra=1) and EsIVA = 0 and EnUso = 1 and ConceptosImpositivos.Descripcion Not like '%(R)%'";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
     public function fetchParaClientesSinPercepcionesR($where = null, $order = null, $count = null, $offset = null)
@@ -282,10 +289,11 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $condicion = "(ParaPago = 1 or ParaVenta=1) and EsIVA = 0 and EnUso = 1 and ConceptosImpositivos.Descripcion Not like '%(R)%'";
         //$order = " EsIVADefault desc";
         $where = $this->_addCondition($where, $condicion);
-        return parent:: fetchAll($where, $order, $count, $offset);
+        return parent::fetchAll($where, $order, $count, $offset);
     }
 
-    public function exportadorSIAGER($modelo,$idLibro) {
+    public function exportadorSIAGER($modelo, $idLibro)
+    {
         switch ($modelo) {
             case 1:
                 $sql = "call SIAGER_exportador_Retenciones($idLibro)";
@@ -293,11 +301,10 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
             case 2:
                 $sql = "call SIAGER_exportador_Percepciones($idLibro)";
                 break;
-            throw new Rad_Db_Table_Exception('No existe el libro seleccionado.');
+                throw new Rad_Db_Table_Exception('No existe el libro seleccionado.');
                 break;
         }
         $reporte = $this->_db->fetchAll($sql);
         return $reporte;
     }
-
 }

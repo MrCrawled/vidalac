@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
     <property name="units">cm</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="layoutPreference">fixed layout</property>
@@ -19,12 +18,11 @@
     <list-property name="cssStyleSheets">
         <structure>
             <property name="fileName">css/EstiloBase.css</property>
-            <property name="useExternalCss">false</property>
         </structure>
     </list-property>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="17"
- extends="ConectorDB.DataSource">
+                         extends="ConectorDB.DataSource">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>contentBidiFormatStr</name>
@@ -34,12 +32,6 @@
                     <name>metadataBidiFormatStr</name>
                     <value>ILYNN</value>
                 </ex-property>
-                <ex-property>
-                    <name>disabledMetadataBidiFormatStr</name>
-                </ex-property>
-                <ex-property>
-                    <name>disabledContentBidiFormatStr</name>
-                </ex-property>
             </list-property>
         </oda-data-source>
     </data-sources>
@@ -48,42 +40,9 @@
             <list-property name="columnHints">
                 <structure>
                     <property name="columnName">RazonSocial</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">RazonSocial</text-property>
-                    <text-property name="heading">RazonSocial</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Cuit</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">Cuit</text-property>
-                    <text-property name="heading">Cuit</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Numero</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">Numero</text-property>
-                    <text-property name="heading">Numero</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">FechaEmision</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">FechaEmision</text-property>
-                    <text-property name="heading">FechaEmision</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">TotalParcial</property>
-                    <property name="analysis">dimension</property>
-                    <text-property name="displayName">TotalParcial</text-property>
-                    <text-property name="heading">TotalParcial</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Importe</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">Importe</text-property>
-                    <text-property name="heading">Importe</text-property>
                 </structure>
             </list-property>
-            <list-property name="parameters"/>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -93,26 +52,21 @@
                     </structure>
                     <structure>
                         <property name="position">2</property>
-                        <property name="name">Cuit</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">3</property>
                         <property name="name">Numero</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">4</property>
+                        <property name="position">3</property>
                         <property name="name">FechaEmision</property>
                         <property name="dataType">date</property>
                     </structure>
                     <structure>
-                        <property name="position">5</property>
+                        <property name="position">4</property>
                         <property name="name">TotalParcial</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">6</property>
+                        <property name="position">5</property>
                         <property name="name">Importe</property>
                         <property name="dataType">decimal</property>
                     </structure>
@@ -125,47 +79,34 @@
                     <property name="name">RazonSocial</property>
                     <property name="nativeName">RazonSocial</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
-                    <property name="name">Cuit</property>
-                    <property name="nativeName">Cuit</property>
-                    <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
-                </structure>
-                <structure>
-                    <property name="position">3</property>
                     <property name="name">Numero</property>
                     <property name="nativeName">Numero</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">4</property>
+                    <property name="position">3</property>
                     <property name="name">FechaEmision</property>
                     <property name="nativeName">FechaEmision</property>
                     <property name="dataType">date</property>
-                    <property name="nativeDataType">91</property>
                 </structure>
                 <structure>
-                    <property name="position">5</property>
+                    <property name="position">4</property>
                     <property name="name">TotalParcial</property>
                     <property name="nativeName">TotalParcial</property>
                     <property name="dataType">string</property>
-                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
-                    <property name="position">6</property>
+                    <property name="position">5</property>
                     <property name="name">Importe</property>
                     <property name="nativeName">Importe</property>
                     <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[
 SELECT P.RazonSocial AS RazonSocial,
-P.Cuit AS Cuit,
 fNumeroCompleto(C.Id,'S') AS Numero,
 C.FechaEmision AS FechaEmision,
 CASE WHEN IFNULL(fComprobante_Monto_Disponible_A_Fecha(C.Id,{FECHA}),0) = 0 THEN 'TOTAL' ELSE 'PARCIAL' END AS TotalParcial,
@@ -177,7 +118,7 @@ INNER JOIN Personas P ON C.Persona = P.Id
 {WHERE}
 AND C.FechaEmision <= {FECHA}
 AND CASE {TIPO} WHEN 1 THEN
-    ( (TC.Grupo IN (6,7,11,12,19,23,24,26) AND TC.Id NOT IN (65,66) AND C.EsProveedor = 0)
+    ( (TC.Grupo IN (6,7,11,12,19) AND TC.Id NOT IN (65,66) AND C.EsProveedor = 0)
     OR (TC.Grupo IN (1,8,13,15) AND C.EsCliente = 1)
     OR (fNumeroCompleto(C.Id,'S')  COLLATE utf8_general_ci LIKE '%Saldo s/Recibo%') )
     WHEN 2 THEN
@@ -185,11 +126,10 @@ AND CASE {TIPO} WHEN 1 THEN
     OR (TC.Grupo IN (6,7,12) AND C.EsProveedor = 1)
     OR (fNumeroCompleto(C.Id,'S') COLLATE utf8_general_ci LIKE '%Saldo s/Orden de Pago%') )
 END
-AND TC.Grupo IN (1,6,7,8,9,11,12,13,15,19,20,23,24,26)
+AND TC.Grupo IN (1,6,7,8,9,11,12,13,15,19,20)
 AND C.Cerrado = 1
 AND C.Anulado = 0
-ORDER BY P.RazonSocial,C.FechaEmision
-]]></xml-property>
+ORDER BY P.RazonSocial,C.FechaEmision]]></xml-property>
         </oda-data-set>
     </data-sets>
     <styles>
@@ -244,41 +184,28 @@ ORDER BY P.RazonSocial,C.FechaEmision
         </simple-master-page>
     </page-setup>
     <body>
-       <grid name="TextoEncabezado" id="2518">
-            <list-property name="visibility">
-                <structure>
-                    <property name="format">xls</property>
-                    <expression name="valueExpr" type="javascript">true</expression>
-                </structure>
-            </list-property>
-            <row id="2519">
-                <cell id="2520"/>
+        <grid name="Separador 1" id="2478">
+            <property name="height">5pt</property>
+            <column id="2479"/>
+            <row id="2480">
+                <cell id="2481"/>
             </row>
-            <row id="2521">
-                <cell id="2522">
-                    <grid id="2653">
-                        <property name="width">13.6in</property>
-                        <column id="2654">
-                            <property name="width">13.6in</property>
-                        </column>
-                        <row id="2661">
-                            <cell id="2662">
-                                <label id="2670">
-                                    <property name="fontFamily">"Verdana"</property>
-                                    <property name="fontSize">12pt</property>
-                                    <property name="fontWeight">bold</property>
-                                    <property name="fontStyle">normal</property>
-                                    <text-property name="text">{TEXTO}</text-property>
-                                </label>
-                            </cell>
-                        </row>
-                    </grid>
+        </grid>
+        <grid name="Titulos" id="2447">
+            <property name="width">19.706166666666668cm</property>
+            <column id="2448">
+                <property name="width">19.706166666666668cm</property>
+            </column>
+            <row id="2452">
+                <cell id="2453">
+                    <label id="2457">
+                        <property name="style">encabezado-Estilo-1</property>
+                        <text-property name="text">{TEXTO}</text-property>
+                    </label>
                 </cell>
             </row>
-            <row id="2790">
-                <cell id="2791"/>
-            </row>
-        </grid>        <grid name="Separador 2" id="2474">
+        </grid>
+        <grid name="Separador 2" id="2474">
             <property name="height">5pt</property>
             <column id="2475"/>
             <row id="2476">
@@ -286,7 +213,6 @@ ORDER BY P.RazonSocial,C.FechaEmision
             </row>
         </grid>
         <table id="2594">
-            <property name="width">19.706166666666668cm</property>
             <property name="dataSet">Detalle</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -331,44 +257,18 @@ ORDER BY P.RazonSocial,C.FechaEmision
                         </structure>
                     </list-property>
                 </structure>
-                <structure>
-                    <property name="name">Cuit</property>
-                    <text-property name="displayName">Cuit</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Cuit"]</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
-                </structure>
             </list-property>
-            <column id="2613">
-                <property name="width">30%</property>
-            </column>
-            <column id="2633">
-                <property name="width">15%</property>
-            </column>
-            <column id="2614">
-                <property name="width">15%</property>
-            </column>
-            <column id="2615">
-                <property name="width">10%</property>
-            </column>
-            <column id="2616">
-                <property name="width">15%</property>
-            </column>
-            <column id="2617">
-                <property name="width">15%</property>
-            </column>
+            <column id="2613"/>
+            <column id="2614"/>
+            <column id="2615"/>
+            <column id="2616"/>
+            <column id="2617"/>
             <header>
                 <row id="2595">
                     <cell id="2596">
                         <label id="2618">
                             <property name="textAlign">left</property>
                             <text-property name="text">Razon Social</text-property>
-                        </label>
-                    </cell>
-                    <cell id="2630">
-                        <label id="2634">
-                            <property name="textAlign">left</property>
-                            <text-property name="text">Cuit</text-property>
                         </label>
                     </cell>
                     <cell id="2597">
@@ -405,11 +305,6 @@ ORDER BY P.RazonSocial,C.FechaEmision
                             <property name="resultSetColumn">RazonSocial</property>
                         </data>
                     </cell>
-                    <cell id="2631">
-                        <data id="2635">
-                            <property name="resultSetColumn">Cuit</property>
-                        </data>
-                    </cell>
                     <cell id="2603">
                         <data id="2621">
                             <property name="textAlign">left</property>
@@ -443,7 +338,6 @@ ORDER BY P.RazonSocial,C.FechaEmision
             <footer>
                 <row id="2607">
                     <cell id="2608"/>
-                    <cell id="2632"/>
                     <cell id="2609"/>
                     <cell id="2610"/>
                     <cell id="2611"/>

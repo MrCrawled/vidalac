@@ -1,0 +1,994 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">2548</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">2548</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">2548</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">120</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">librerias/ConectorDB.rptlibrary</property>
+            <property name="namespace">ConectorDB</property>
+        </structure>
+        <structure>
+            <property name="fileName">librerias/CabeceraInterna.rptlibrary</property>
+            <property name="namespace">CabeceraInterna</property>
+        </structure>
+    </list-property>
+    <list-property name="cssStyleSheets">
+        <structure>
+            <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="idPeriodoImputacionDesde" id="2544">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="idPeriodoImputacionHasta" id="2549">
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ComprantesSinIvaDetallado" id="2548">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">RazonSocial</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                    <text-property name="heading">RazonSocial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TipoDeComprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TipoDeComprobante</text-property>
+                    <text-property name="heading">TipoDeComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NroDeComprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NroDeComprobante</text-property>
+                    <text-property name="heading">NroDeComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PartidaPatenteSinIVAIdentificador</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PartidaPatenteSinIVAIdentificador</text-property>
+                    <text-property name="heading">PartidaPatenteSinIVAIdentificador</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DescripcionSinIVA</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">DescripcionSinIVA</text-property>
+                    <text-property name="heading">DescripcionSinIVA</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PeriodoLiquidacionSinIVA</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PeriodoLiquidacionSinIVA</text-property>
+                    <text-property name="heading">PeriodoLiquidacionSinIVA</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaVencimiento</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FechaVencimiento</text-property>
+                    <text-property name="heading">FechaVencimiento</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Importe</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Importe</text-property>
+                    <text-property name="heading">Importe</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaPago</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FechaPago</text-property>
+                    <text-property name="heading">FechaPago</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FormaDePago</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FormaDePago</text-property>
+                    <text-property name="heading">FormaDePago</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PlanDeCuenta_Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">PlanDeCuenta_Descripcion</text-property>
+                    <text-property name="heading">PlanDeCuenta_Descripcion</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">RazonSocial</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TipoDeComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">NroDeComprobante</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">PartidaPatenteSinIVAIdentificador</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">DescripcionSinIVA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">PeriodoLiquidacionSinIVA</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">FechaVencimiento</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">Importe</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">FechaPago</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">FormaDePago</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">PlanDeCuenta_Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">RazonSocial</property>
+                    <property name="nativeName">RazonSocial</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TipoDeComprobante</property>
+                    <property name="nativeName">TipoDeComprobante</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">NroDeComprobante</property>
+                    <property name="nativeName">NroDeComprobante</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">PartidaPatenteSinIVAIdentificador</property>
+                    <property name="nativeName">PartidaPatenteSinIVAIdentificador</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">PeriodoLiquidacionSinIVA</property>
+                    <property name="nativeName">PeriodoLiquidacionSinIVA</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">FechaVencimiento</property>
+                    <property name="nativeName">FechaVencimiento</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">Importe</property>
+                    <property name="nativeName">Importe</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">FechaPago</property>
+                    <property name="nativeName">FechaPago</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">FormaDePago</property>
+                    <property name="nativeName">FormaDePago</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">PlanDeCuenta_Descripcion</property>
+                    <property name="nativeName">PlanDeCuenta_Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[
+SELECT
+    P.RazonSocial                AS RazonSocial,
+    T.Descripcion                AS TipoDeComprobante,
+    C.NumeroSinIVA               AS NroDeComprobante,
+    PP.Identificador             AS PartidaPatenteSinIVAIdentificador,
+    CDC.Observaciones            AS DescripcionSinIVA,
+    PL.Descripcion               AS PeriodoLiquidacionSinIVA,
+    C.FechaVencimiento           AS FechaVencimiento,
+    IFNULL(CDC.Cantidad * CDC.PrecioUnitario,0.0000) AS Importe,
+    CASE WHEN C.Anulado = 1 THEN NULL      ELSE CP.FechaEmision END AS FechaPago,
+    CASE WHEN CD.Observaciones = 'Efectivo' THEN 'Contado'
+         WHEN CD.TarjetaDeCreditoCupon IS NOT NULL THEN CONCAT('Tarjeta de Credito (',CAST(TCM.Descripcion AS CHAR), ') N° ',TC.Numero, ' Cupon N° ', TCC.NumeroCupon)
+         WHEN CD.cheque                IS NOT NULL THEN CONCAT('Cheque (',CHBS.Descripcion,') Serie ',UCase(CH.Serie),' N° ',CH.Numero)
+         WHEN CD.TransaccionBancaria   IS NOT NULL THEN CASE WHEN TB.TipoDeMovimiento = 1 THEN CONCAT(' ',TTB.Descripcion,' (',TRBSO.Descripcion,') ', CAST(CDTCO.Codigo AS CHAR), ' ', CAST(CBO.Numero AS CHAR) ) 
+                                                        WHEN TB.TipoDeMovimiento = 2 THEN CONCAT(' ',TTB.Descripcion,' (',TRBSD.Descripcion,') ', CAST(CDTCD.Codigo AS CHAR), ' ', CAST(CBD.Numero AS CHAR) ) END ELSE '' END AS FormaDePago,
+    fComprobante_PlanDeCuenta(C.Id) AS PlanDeCuenta_Descripcion
+FROM
+    Comprobantes C
+    INNER JOIN {FROMQUERY} PI ON C.PeriodoImputacionSinIVA = PI.Id
+    INNER JOIN Personas P ON C.Persona = P.Id
+    INNER JOIN TiposDeComprobantes T ON C.TipoDeComprobante = T.Id
+    LEFT  JOIN ComprobantesDetalles CDC ON C.Id = CDC.Comprobante
+    LEFT  JOIN TiposDeCondicionesDePago TCP ON TCP.Id = C.CondicionDePago
+    LEFT  JOIN periodosliquidacionsiniva PL ON C.PeriodoLiquidacionSinIVA = PL.Id
+    LEFT  JOIN partidaspatentessiniva PP ON C.PartidaPatenteSinIVA = PP.Id
+    LEFT  JOIN ComprobantesRelacionados CR ON CR.ComprobanteHijo = C.Id
+    LEFT  JOIN Comprobantes CP ON CR.ComprobantePadre = CP.Id AND CP.TipoDeComprobante = 69 AND CP.Cerrado = 1
+    LEFT  JOIN ComprobantesDetalles CD ON CP.Id = CD.Comprobante
+    LEFT  JOIN tarjetasdecreditocupones TCC ON CD.TarjetaDeCreditoCupon = TCC.Id
+    LEFT  JOIN tarjetasdecredito TC ON TCC.TarjetaDeCredito = TC.Id
+    LEFT  JOIN tarjetasdecreditomarcas TCM ON TC.TarjetaCreditoMarca = TCM.Id
+    LEFT  JOIN cheques CH ON CD.cheque = CH.Id
+    LEFT  JOIN bancossucursales CHBS ON CH.BancoSucursal = CHBS.Id
+    LEFT  JOIN transaccionesbancarias TB ON CD.TransaccionBancaria = TB.Id
+    LEFT  JOIN cuentasbancarias CBO ON TB.CtaOrigen = CBO.Id
+    LEFT  JOIN bancossucursales TRBSO ON CBO.BancoSucursal = TRBSO.Id
+    LEFT  JOIN tiposdecuentas CDTCO ON CBO.TipodeCuenta  = CDTCO.Id
+    LEFT  JOIN cuentasbancarias CBD ON TB.CtaDestino = CBD.Id
+    LEFT  JOIN bancossucursales TRBSD ON CBD.BancoSucursal = TRBSD.Id
+    LEFT  JOIN tiposdecuentas CDTCD ON CBD.TipodeCuenta  = CDTCD.Id
+    LEFT  JOIN tiposdetransaccionesbancarias TTB ON TB.TipoDeTransaccionBancaria = TTB.Id 	
+{WHEREQUERY}
+ORDER BY C.FechaVencimiento ASC           
+]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroPeriodoImputacionDesde" id="2650">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                    <text-property name="heading">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idPeriodoImputacionDesde</property>
+                    <property name="paramName">idPeriodoImputacionDesde</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">0</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Descripcion from periodosimputacionsiniva where Id = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Descripcion</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroPeriodoImputacionHasta" id="2651">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Descripcion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Descripcion</text-property>
+                    <text-property name="heading">Descripcion</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">idPeriodoImputacionHasta</property>
+                    <property name="paramName">idPeriodoImputacionHasta</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">12</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">true</property>
+                    <property name="allowNull">true</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Descripcion</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Base</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Descripcion</property>
+                    <property name="nativeName">Descripcion</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select Descripcion from periodosimputacionsiniva where Id = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>Descripcion</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>Descripcion</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>Descripcion</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
+            <property name="type">us-legal</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
+            <overridden-values>
+                <ref-entry baseId="2434" name="Cabecera" id="2434"/>
+                <ref-entry baseId="2435" id="2435"/>
+                <ref-entry baseId="2436" id="2436"/>
+                <ref-entry baseId="2437" id="2437"/>
+                <ref-entry baseId="2438" name="NewLabel1" id="2438"/>
+                <ref-entry baseId="2404" name="NewGrid" id="2404"/>
+                <ref-entry baseId="2405" id="2405"/>
+                <ref-entry baseId="2406" id="2406"/>
+                <ref-entry baseId="2419" id="2419"/>
+                <ref-entry baseId="2417" id="2417"/>
+                <ref-entry baseId="2407" id="2407"/>
+                <ref-entry baseId="2408" id="2408"/>
+                <ref-entry baseId="2409" id="2409"/>
+                <ref-entry baseId="2433" name="NewLabel" id="2433"/>
+                <ref-entry baseId="2410" id="2410"/>
+                <ref-entry baseId="2432" name="NewText" id="2432"/>
+                <ref-entry baseId="2418" id="2418"/>
+                <ref-entry baseId="2416" id="2416"/>
+                <ref-entry baseId="2411" id="2411"/>
+                <ref-entry baseId="2421" name="NewGrid1" id="2421"/>
+                <ref-entry baseId="2422" id="2422"/>
+                <ref-entry baseId="2423" id="2423"/>
+                <ref-entry baseId="2424" id="2424"/>
+                <ref-entry baseId="2425" id="2425"/>
+                <ref-entry baseId="2426" id="2426"/>
+                <ref-entry baseId="2427" name="NewAutoText" id="2427"/>
+                <ref-entry baseId="2428" id="2428"/>
+                <ref-entry baseId="2429" name="NewText1" id="2429"/>
+                <ref-entry baseId="2430" id="2430"/>
+                <ref-entry baseId="2431" name="NewAutoText1" id="2431"/>
+            </overridden-values>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid name="TextoEncabezado" id="2519">
+            <column id="2520"/>
+            <row id="2521">
+                <cell id="2522">
+                    <grid id="2653">
+                        <column id="2654">
+                            <property name="width">30%</property>
+                        </column>
+                        <column id="2655">
+                            <property name="width">5%</property>
+                        </column>
+                        <column id="2656">
+                            <property name="width">10%</property>
+                        </column>
+                        <column id="2657">
+                            <property name="width">5%</property>
+                        </column>
+                        <column id="2658">
+                            <property name="width">10%</property>
+                        </column>
+                        <column id="2659">
+                            <property name="width">6%</property>
+                        </column>
+                        <column id="2660"/>
+                        <row id="2661">
+                            <cell id="2662">
+                                <label id="2670">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="fontStyle">normal</property>
+                                    <text-property name="text">{TEXTO}</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2663">
+                                <label id="2671">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Desde :</text-property>
+                                </label>
+                            </cell>
+                            <cell id="2664">
+                                <data id="2677">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <property name="dataSet">FiltroPeriodoImputacionDesde</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idLibroIVADesde"].value == null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Descripcion</property>
+                                            <text-property name="displayName">Descripcion</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Descripcion</property>
+                                </data>
+                            </cell>
+                            <cell id="2665">
+                                <label id="2672">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="fontWeight">bold</property>
+                                    <text-property name="text">Hasta : </text-property>
+                                </label>
+                            </cell>
+                            <cell id="2666">
+                                <data id="2678">
+                                    <property name="fontFamily">"Verdana"</property>
+                                    <property name="display">inline</property>
+                                    <property name="dataSet">FiltroPeriodoImputacionHasta</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["idLibroIVAHasta"].value == null</expression>
+                                        </structure>
+                                    </list-property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">Descripcion</property>
+                                            <text-property name="displayName">Descripcion</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["Descripcion"]</expression>
+                                            <property name="dataType">string</property>
+                                            <property name="allowExport">true</property>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">Descripcion</property>
+                                </data>
+                            </cell>
+                            <cell id="2667"/>
+                            <cell id="2668"/>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="2790">
+                <cell id="2791"/>
+            </row>
+        </grid>
+        <table id="3036">
+            <property name="dataSet">ComprantesSinIvaDetallado</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">RazonSocial</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["RazonSocial"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TipoDeComprobante</property>
+                    <text-property name="displayName">TipoDeComprobante</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TipoDeComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">NroDeComprobante</property>
+                    <text-property name="displayName">NroDeComprobante</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["NroDeComprobante"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PartidaPatenteSinIVAIdentificador</property>
+                    <text-property name="displayName">PartidaPatenteSinIVAIdentificador</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PartidaPatenteSinIVAIdentificador"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DescripcionSinIVA</property>
+                    <text-property name="displayName">DescripcionSinIVA</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DescripcionSinIVA"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PeriodoLiquidacionSinIVA</property>
+                    <text-property name="displayName">PeriodoLiquidacionSinIVA</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PeriodoLiquidacionSinIVA"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaVencimiento</property>
+                    <text-property name="displayName">FechaVencimiento</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaVencimiento"]</expression>
+                    <property name="dataType">date</property>
+                </structure>
+                <structure>
+                    <property name="name">Importe</property>
+                    <text-property name="displayName">Importe</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Importe"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">FechaPago</property>
+                    <text-property name="displayName">FechaPago</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaPago"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">FormaDePago</property>
+                    <text-property name="displayName">FormaDePago</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["FormaDePago"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">PlanDeCuenta_Descripcion</property>
+                    <text-property name="displayName">PlanDeCuenta_Descripcion</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["PlanDeCuenta_Descripcion"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Total</property>
+                    <property name="dataType">float</property>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["Importe"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="3090">
+                <property name="width">20%</property>
+            </column>
+            <column id="3091">
+                <property name="fontSize">8pt</property>
+                <property name="width">6%</property>
+            </column>
+            <column id="3092">
+                <property name="width">6%</property>
+            </column>
+            <column id="3093">
+                <property name="width">8%</property>
+            </column>
+            <column id="3593">
+                <property name="width">10%</property>
+            </column>
+            <column id="3094">
+                <property name="width">5%</property>
+            </column>
+            <column id="3095">
+                <property name="width">5%</property>
+            </column>
+            <column id="3096">
+                <property name="width">7%</property>
+            </column>
+            <column id="3097">
+                <property name="width">5%</property>
+            </column>
+            <column id="3098">
+                <property name="width">10%</property>
+            </column>
+            <column id="3099">
+                <property name="width">18%</property>
+            </column>
+            <header>
+                <row id="3037">
+                    <property name="fontSize">7pt</property>
+                    <cell id="3038">
+                        <label id="3039">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Razon Social</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3040">
+                        <label id="3041">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Tipo Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3042">
+                        <label id="3043">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Nro. Comprobante</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3044">
+                        <label id="3045">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Partida / Patente</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3544">
+                        <label id="3545">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Descripcion</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3046">
+                        <label id="3047">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">P. Liq.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3048">
+                        <label id="3049">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Fec. Vto.</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3050">
+                        <label id="3051">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Importe</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3052">
+                        <label id="3053">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Fec. Pago</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3054">
+                        <label id="3055">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Forma Pago</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3056">
+                        <label id="3057">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">left</property>
+                            <text-property name="text">Cuenta Contable</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="3058">
+                    <cell id="3059">
+                        <data id="3060">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">RazonSocial</property>
+                        </data>
+                    </cell>
+                    <cell id="3061">
+                        <data id="3062">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">TipoDeComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="3063">
+                        <data id="3064">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">NroDeComprobante</property>
+                        </data>
+                    </cell>
+                    <cell id="3065">
+                        <data id="3066">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">PartidaPatenteSinIVAIdentificador</property>
+                        </data>
+                    </cell>
+                    <cell id="3565">
+                        <data id="3566">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">DescripcionSinIVA</property>
+                        </data>
+                    </cell>
+                    <cell id="3067">
+                        <data id="3068">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">PeriodoLiquidacionSinIVA</property>
+                        </data>
+                    </cell>
+                    <cell id="3069">
+                        <data id="3070">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="resultSetColumn">FechaVencimiento</property>
+                        </data>
+                    </cell>
+                    <cell id="3071">
+                        <data id="3072">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="numberAlign">right</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Importe</property>
+                        </data>
+                    </cell>
+                    <cell id="3073">
+                        <data id="3074">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">dd/MM/yyyy</property>
+                            </structure>
+                            <property name="textAlign">left</property>
+                            <property name="resultSetColumn">FechaPago</property>
+                        </data>
+                    </cell>
+                    <cell id="3075">
+                        <data id="3076">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">FormaDePago</property>
+                        </data>
+                    </cell>
+                    <cell id="3077">
+                        <data id="3078">
+                            <property name="fontFamily">sans-serif</property>
+                            <property name="fontSize">6pt</property>
+                            <property name="resultSetColumn">PlanDeCuenta_Descripcion</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="3079">
+                    <property name="borderTopStyle">solid</property>
+                    <cell id="3080"/>
+                    <cell id="3081"/>
+                    <cell id="3082"/>
+                    <cell id="3083"/>
+                    <cell id="3084"/>
+                    <cell id="3085">
+                        <label id="3101">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Total</text-property>
+                        </label>
+                    </cell>
+                    <cell id="3086">
+                        <data id="3100">
+                            <property name="fontFamily">"Verdana"</property>
+                            <structure name="numberFormat">
+                                <property name="category">Currency</property>
+                                <property name="pattern">$ #,##0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">Total</property>
+                        </data>
+                    </cell>
+                    <cell id="3087"/>
+                    <cell id="3088"/>
+                    <cell id="3089"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -195,9 +195,29 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
      * Retorna el monto total de las retenciones asociadas al Pago
      * @param int $id id de Comprobante
      */
-    public function recuperarMontoRetencion($idComprobante)
+    public function recuperarMontoTotalRetenciones($idComprobante)
     {
         $txtSQL = "SELECT fCompPago_Monto_Retencion($idComprobante)";
+        return  $this->_db->fetchOne($txtSQL);
+    }
+	
+    /**
+     * Retorna el monto total de las retenciones de Ingresos Brutos asociadas al Pago
+     * @param int $id id de Comprobante
+     */
+    public function recuperarMontoTotalRetencionesIB($idComprobante)
+    {
+        $txtSQL = "SELECT fCompPago_Monto_Retencion_IB($idComprobante)";
+        return  $this->_db->fetchOne($txtSQL);
+    }
+	
+    /**
+     * Retorna el monto total de las retenciones de Ganancias asociadas al Pago
+     * @param int $id id de Comprobante
+     */
+    public function recuperarMontoTotalRetencionesGanancias($idComprobante)
+    { 
+        $txtSQL = "SELECT fCompPago_Monto_Retencion_Ganancias($idComprobante)";
         return  $this->_db->fetchOne($txtSQL);
     }
 	
@@ -397,6 +417,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
             $Operacion = "Pago";
             $this->recalcularConceptosParaPagos($idComp);
             $this->recalcularComoAgenteRetencionesIBParaPagos($idComp);
+            $this->recalcularComoAgenteRetencionesGananciasParaPagos($idComp);
         }
     }
 
@@ -513,6 +534,151 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
     }
 
     /**
+     * Rearma como Agente de Retencion Ganancias las retenciones de un Pago
+     *
+     * @param int       $idComprobante  identificador de la Orden de Pago
+     *
+     * @return boolean
+     */
+    
+    public function recalcularComoAgenteRetencionesGananciasParaPagos($idComprobante)
+    {
+
+        // Recupero el registro Padre
+        $R_C = $this->find($idComprobante)->current();
+        if (!$R_C) {
+            throw new Rad_Db_Table_Exception('El Comprobante Padre no existe.');
+        }
+
+        $idPersona      = $R_C->Persona;
+        $fechaEmision   = $R_C->FechaEmision;
+        $LibroIVA       = $R_C->LibroIVA;
+
+        $M_C = Service_TableManager::get('Facturacion_Model_DbTable_Comprobantes');
+
+        $sql = "SELECT  PRG.ConceptoImpositivo,
+                        CI.Descripcion AS ConceptoImpositivoDescripcion,
+                        CI.MontoMinimo AS ConceptoImpositivoMontoMinimo,
+                        PRG.TipoInscripcionGanancia,
+                        IG.Descripcion AS TipoInscripcionGananciaDescripcion,
+                        PRG.TipoRetencionGanancia,
+                        GR.Descripcion AS TipoRetencionGananciaDescripcion,
+                        PRG.FechaVencimientoCertificadoDeExclusion,
+                        PRG.FechaAlta,
+                        PRG.FechaUltCambio,
+                        PRG.FechaBaja,
+                        CASE 
+                             -- Inscripto
+                             WHEN IG.Id  = 1 THEN GR.MontosNoSujetosARetencion
+                             -- No Inscripto
+                             WHEN IG.Id  = 2 THEN GR.MontosNoSujetosARetencion
+                            -- Monotributo / Exento / Con certificado de exclusión
+                            ELSE 0  
+                        END AS MontoMinimoRetencion,
+                        CASE 
+                             -- Inscripto
+                             WHEN IG.Id  = 1 THEN GR.PorcentajeARetenerInscriptos
+                             -- No Inscripto
+                             WHEN IG.Id  = 2 THEN GR.PorcentajeARetenerNoInscriptos
+                            -- Monotributo / Exento / Con certificado de exclusión
+                            ELSE 0  
+                        END AS Porcentaje
+                FROM personasretencionesganancias PRG
+                INNER JOIN ConceptosImpositivos                 CI  ON CI.Id = PRG.ConceptoImpositivo
+                LEFT  JOIN TiposDeInscripcionesGanancias        IG  ON IG.Id = PRG.TipoInscripcionGanancia
+                LEFT  JOIN TiposDeImpuestosGananciasRetenciones GR  ON GR.Id = PRG.TipoRetencionGanancia 
+                WHERE PRG.Persona    = $idPersona
+                  AND CI.ParaPago    = 1
+                  AND CI.EsRetencion = 1
+                  AND CI.EsIVA       = 0
+                ORDER BY CI.Descripcion";
+
+        $R_IG = $this->_db->fetchAll($sql);
+
+        if (count($R_IG)) {
+
+            foreach ($R_IG as $row) {
+
+                $idConcepto = $row["ConceptoImpositivo"];
+
+                // No se realizan retenciones si el porcentaje estipulado es igual a 0.
+                if ( $row['Porcentaje'] == 0 ) {
+                    continue;
+                }
+                //Rad_Log::debug("Porcentaje : ".$row['Porcentaje']);
+                $MontoPorPagar = $this->recuperarMontoNGTotal($idComprobante);
+                //Rad_Log::debug("MontoPorPagar : ".$MontoPorPagar);
+                $MontoPagado = $this->recuperarMontoTotalNGPagadoSobrePeriodo($idConcepto, $idComprobante);
+                //Rad_Log::debug("MontoPagado : ".$MontoPagado);
+                if ( ( $MontoPagado + $MontoPorPagar ) <= $row['MontoMinimoRetencion'] ) {
+                    $MontoImponible = 0;
+                } else {
+                    $MontoImponible = round( ( $MontoPagado + $MontoPorPagar ) - $row['MontoMinimoRetencion'], 2);
+                }
+                //Rad_Log::debug("MontoImponible : ".$MontoImponible);
+ 
+                $MontoPorRetener = round( $MontoImponible * ( $row['Porcentaje'] / 100 ), 2 );
+                //Rad_Log::debug("MontoPorRetener : ".$MontoPorRetener);
+
+                if ( ( $MontoImponible > 0 ) && ( $MontoPorRetener > $row['ConceptoImpositivoMontoMinimo'] ) ) {
+
+                    $MontoPorRetener = round( $MontoImponible * ( $row['Porcentaje'] / 100 ), 2 );
+                    //Rad_Log::debug("MontoPorRetener : ".$MontoPorRetener);
+                    $MontoRetenido = $this->recuperarMontoRetencionesRealizadasSobrePeriodo($idConcepto, $idComprobante);
+                    //Rad_Log::debug("MontoRetenido : ".$MontoRetenido);
+                    $MontoPorRetener = $MontoPorRetener - $MontoRetenido;
+                    //Rad_Log::debug("MontoPorRetener : ".$MontoPorRetener);
+                    $Renglon = array(
+                        'Persona' => $idPersona,
+                        'ComprobantePadre' => $idComprobante,
+                        'TipoDeComprobante' => '13',
+                        'Numero' => $this->recuperarProximoNumero(0, 13),
+                        'FechaEmision' => $fechaEmision,
+                        'Divisa' => 1,
+                        'ValorDivisa' => 1,
+                        'LibroIVA' => $LibroIVA,
+                        'ConceptoImpositivo' => $row['ConceptoImpositivo'],
+                        'ConceptoImpositivoPorcentaje' => $row['Porcentaje'],
+                        'Observaciones' => $row['ConceptoImpositivoDescripcion'],
+                        'MontoImponible' => $MontoImponible,
+                        'Monto' => $MontoPorRetener
+                    );
+
+                    $R_H = $this->recuperarConceptoAsignado($idComprobante, $idConcepto);
+                    // Si ya existe el registro UPDATE.
+                    if ($R_H) {
+                        $idCI = $R_H->Id;
+                        // Si se modifico manualmente no lo updateo
+                        if (!$R_H->Modificado) {
+                            $M_C->update($Renglon, "Id = $idCI");
+                            $this->reasignarCIcomoFormaDePago($idComprobante, $idCI, $MontoPorRetener);
+                        }
+                    } else {
+                        // Si no existe el registro INSERT.
+                        $idCI = $M_C->insert($Renglon);
+                        $this->reasignarCIcomoFormaDePago($idComprobante, $idCI, $MontoPorRetener);
+                    }
+
+                } else {
+
+                    $R_H = $this->recuperarConceptoAsignado($idComprobante, $idConcepto);
+                    // Si ya existe el registro DELETE.
+                    if ($R_H) {
+                        $idCI = $R_H->Id;
+                        $M_OPD = Service_TableManager::get('Facturacion_Model_DbTable_OrdenesDePagosDetalles');
+                        $M_OPD->delete("ComprobanteRelacionado = $idCI and Comprobante = $idComprobante");
+                        $M_C->delete("Id = $idCI");
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    /**
      * Rearma como Agente de Retencion IB las retenciones de un Pago
      *
      * @param int 		$idComprobante	identificador de la Orden de Pago
@@ -547,14 +713,10 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                               WHEN PIB.TipoInscripcionIB = 2 THEN 0
                               -- Convenio Multilateral --
                               WHEN PIB.TipoInscripcionIB = 3 THEN
-                                -- Si tiene un Certificado de No Retencion y el Vto de la declaracion CM05 aún no esta vencido = No Retener.
-                                CASE WHEN ( MotivoNoPercepcionRetencionIB = 3 AND IFNULL(PIB.FechaVencimientoCM05,'1990-01-01') >= '" . $fechaEmision . "' ) THEN 0 ELSE
-                                   -- Sino el coeficiente es menos a 0.1 o NULL = No Retener.
-                                   CASE WHEN (PIB.CoeficienteCM05 = 0 OR PIB.CoeficienteCM05 < 0.1) THEN 0
-                                      -- Sino tiene coeficiente o es mayor a 0.1 se toma el porcentaje de la actividad si se encuentra asiganda de lo contrario se asume el porcentaje actual del concepto.
-                                      ELSE CASE WHEN ( CAA.Id IS NOT NULL ) THEN CAA.Porcentaje ELSE CI.PorcentajeActual END 
-                                   END
-                                   --
+                                -- Si el coeficiente es menos a 0.1 o NULL = No Retener.
+                                CASE WHEN (PIB.CoeficienteCM05 = 0 OR PIB.CoeficienteCM05 < 0.1) THEN 0
+                                     -- Sino tiene coeficiente o es mayor a 0.1 se toma el porcentaje de la actividad si se encuentra asiganda de lo contrario se asume el porcentaje actual del concepto.
+                                     ELSE CASE WHEN ( CAA.Id IS NOT NULL ) THEN CAA.Porcentaje ELSE CI.PorcentajeActual END 
                                 END
                               -- Contribuyente Directo --
                               WHEN PIB.TipoInscripcionIB = 4 THEN
@@ -1006,7 +1168,7 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
 
             // Cierro los conceptos hijos
             $this->_cerrarConceptosHijos($idComprobante);
-            //Rad_Log::debug("Paso");
+
             // Actualizo el valos de los montosAsociados de la ComprobantesRelacionados
             $M_CR = Service_TableManager::get('Facturacion_Model_DbTable_ComprobantesRelacionados');
             $M_CR->updatearMontoAsignado($idComprobante);

@@ -1326,7 +1326,7 @@ class Facturacion_Model_DbTable_Comprobantes extends Rad_Db_Table
         }
 
         // Log Usuarios
-  if ( $rowComprobante->Numero == 0 ) {
+        if ( $rowComprobante->Numero == 0 ) {
             Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion ID $rowComprobante->Id)");
         } else {
             Rad_Log::user("Cerro comprobante ($tipoComprobante->Descripcion Nº $rowComprobante->Numero)");

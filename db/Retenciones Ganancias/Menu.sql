@@ -1,0 +1,1 @@
+INSERT INTO vidalac.modulos (Nombre,Titulo,Controlador,Accion,Parametros,Modulo,Descripcion) VALUES ('TiposDeImpuestosGananciasRetencionesdefault',NULL,'abm','index','/m/Base/model/TiposDeImpuestosGananciasRetenciones','Window','');

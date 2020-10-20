@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 2.5.2.v20100208 Build &lt;2.5.2.v20100210-0630></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">2489</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">2489</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">2489</property>
+        </structure>
+    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
@@ -14,10 +28,12 @@
     <list-property name="cssStyleSheets">
         <structure>
             <property name="fileName">css/EstiloBase.css</property>
+            <property name="useExternalCss">false</property>
         </structure>
     </list-property>
     <data-sources>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186" extends="ConectorDB.DataSource">
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Base" id="186"
+ extends="ConectorDB.DataSource">
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>contentBidiFormatStr</name>
@@ -27,22 +43,158 @@
                     <name>metadataBidiFormatStr</name>
                     <value>ILYNN</value>
                 </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
             </list-property>
         </oda-data-source>
     </data-sources>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Datos" id="2489">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TipoAgente</property>
+                    <property name="alias">TipoAgente</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TipoAgente</text-property>
+                    <text-property name="heading">TipoAgente</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MotivoMovimiento</property>
+                    <property name="alias">MotivoMovimiento</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">MotivoMovimiento</text-property>
+                    <text-property name="heading">MotivoMovimiento</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">RazonSocial</property>
+                    <property name="alias">RazonSocial</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">RazonSocial</text-property>
+                    <text-property name="heading">RazonSocial</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Cuit</property>
+                    <property name="alias">Cuit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Cuit</text-property>
+                    <text-property name="heading">Cuit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NumeroConstancia</property>
+                    <property name="alias">NumeroConstancia</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NumeroConstancia</text-property>
+                    <text-property name="heading">NumeroConstancia</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaRetencion</property>
+                    <property name="alias">FechaRetencion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FechaRetencion</text-property>
+                    <text-property name="heading">FechaRetencion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaComprobante</property>
+                    <property name="alias">FechaComprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FechaComprobante</text-property>
+                    <text-property name="heading">FechaComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TipoComprobante</property>
+                    <property name="alias">TipoComprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TipoComprobante</text-property>
+                    <text-property name="heading">TipoComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LetraComprobante</property>
+                    <property name="alias">LetraComprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">LetraComprobante</text-property>
+                    <text-property name="heading">LetraComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NumeroComprobante</property>
+                    <property name="alias">NumeroComprobante</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NumeroComprobante</text-property>
+                    <text-property name="heading">NumeroComprobante</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImporteBase</property>
+                    <property name="alias">ImporteBase</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ImporteBase</text-property>
+                    <text-property name="heading">ImporteBase</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Alicuota</property>
+                    <property name="alias">Alicuota</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">Alicuota</text-property>
+                    <text-property name="heading">Alicuota</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ImporteRetenido</property>
+                    <property name="alias">ImporteRetenido</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ImporteRetenido</text-property>
+                    <text-property name="heading">ImporteRetenido</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Anulacion</property>
+                    <property name="alias">Anulacion</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Anulacion</text-property>
+                    <text-property name="heading">Anulacion</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContribuyenteConvMultilateral</property>
+                    <property name="alias">ContribuyenteConvMultilateral</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ContribuyenteConvMultilateral</text-property>
+                    <text-property name="heading">ContribuyenteConvMultilateral</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">FechaComprobanteRelacionado</property>
+                    <property name="alias">FechaComprobanteRelacionado</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">FechaComprobanteRelacionado</text-property>
+                    <text-property name="heading">FechaComprobanteRelacionado</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">LetraComprobanteRelacionado</property>
+                    <property name="alias">LetraComprobanteRelacionado</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">LetraComprobanteRelacionado</text-property>
+                    <text-property name="heading">LetraComprobanteRelacionado</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">NumeroComprobanteRelacionado</property>
+                    <property name="alias">NumeroComprobanteRelacionado</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">NumeroComprobanteRelacionado</text-property>
+                    <text-property name="heading">NumeroComprobanteRelacionado</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
                         <property name="name">TipoAgente</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">2</property>
                         <property name="name">MotivoMovimiento</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">3</property>
@@ -57,17 +209,17 @@
                     <structure>
                         <property name="position">5</property>
                         <property name="name">NumeroConstancia</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">6</property>
                         <property name="name">FechaRetencion</property>
-                        <property name="dataType">string</property>
+                        <property name="dataType">date</property>
                     </structure>
                     <structure>
                         <property name="position">7</property>
                         <property name="name">FechaComprobante</property>
-                        <property name="dataType">string</property>
+                        <property name="dataType">date</property>
                     </structure>
                     <structure>
                         <property name="position">8</property>
@@ -87,27 +239,42 @@
                     <structure>
                         <property name="position">11</property>
                         <property name="name">ImporteBase</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">12</property>
                         <property name="name">Alicuota</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">13</property>
                         <property name="name">ImporteRetenido</property>
-                        <property name="dataType">decimal</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">14</property>
                         <property name="name">Anulacion</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">15</property>
                         <property name="name">ContribuyenteConvMultilateral</property>
-                        <property name="dataType">integer</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">FechaComprobanteRelacionado</property>
+                        <property name="dataType">date</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">LetraComprobanteRelacionado</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">NumeroComprobanteRelacionado</property>
+                        <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
@@ -117,93 +284,128 @@
                     <property name="position">1</property>
                     <property name="name">TipoAgente</property>
                     <property name="nativeName">TipoAgente</property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">MotivoMovimiento</property>
                     <property name="nativeName">MotivoMovimiento</property>
-                    <property name="dataType">integer</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">RazonSocial</property>
                     <property name="nativeName">RazonSocial</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">Cuit</property>
                     <property name="nativeName">Cuit</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">NumeroConstancia</property>
                     <property name="nativeName">NumeroConstancia</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">FechaRetencion</property>
                     <property name="nativeName">FechaRetencion</property>
-                    <property name="dataType">string</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">FechaComprobante</property>
                     <property name="nativeName">FechaComprobante</property>
-                    <property name="dataType">string</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">TipoComprobante</property>
                     <property name="nativeName">TipoComprobante</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
                     <property name="name">LetraComprobante</property>
                     <property name="nativeName">LetraComprobante</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
                     <property name="name">NumeroComprobante</property>
                     <property name="nativeName">NumeroComprobante</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
                     <property name="name">ImporteBase</property>
                     <property name="nativeName">ImporteBase</property>
-                    <property name="dataType">decimal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">12</property>
                     <property name="name">Alicuota</property>
                     <property name="nativeName">Alicuota</property>
-                    <property name="dataType">decimal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">13</property>
                     <property name="name">ImporteRetenido</property>
                     <property name="nativeName">ImporteRetenido</property>
-                    <property name="dataType">decimal</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">14</property>
                     <property name="name">Anulacion</property>
                     <property name="nativeName">Anulacion</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">15</property>
                     <property name="name">ContribuyenteConvMultilateral</property>
                     <property name="nativeName">ContribuyenteConvMultilateral</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
-               
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">FechaComprobanteRelacionado</property>
+                    <property name="nativeName">FechaComprobanteRelacionado</property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">LetraComprobanteRelacionado</property>
+                    <property name="nativeName">LetraComprobanteRelacionado</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">NumeroComprobanteRelacionado</property>
+                    <property name="nativeName">NumeroComprobanteRelacionado</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[
 SELECT
@@ -227,7 +429,16 @@ SELECT
     LPAD( ABS( TRUNCATE (C2.ConceptoImpositivoPorcentaje,2)),6,'0') AS Alicuota,
     LPAD( ABS( TRUNCATE (CASE WHEN IFNULL(C2.Anulado,0) = 0 THEN C2.Monto ELSE 0 END,2)),15,'0') AS ImporteRetenido,
     CASE WHEN IFNULL(C2.Anulado,0) = 0 THEN 'No' ELSE 'Sí' END AS Anulacion,
-    CASE WHEN P.TipoInscripcionIB = 3 THEN 'Sí' ELSE 'No' END AS ContribuyenteConvMultilateral
+    CASE WHEN P.TipoInscripcionIB = 3 THEN 'Sí' ELSE 'No' END AS ContribuyenteConvMultilateral,
+    C3.FechaEmision AS FechaComprobanteRelacionado,
+    CASE
+    WHEN (TC3.TipoDeLetra = 1) THEN 'A'
+    WHEN (TC3.TipoDeLetra = 2) THEN 'B'
+    WHEN (TC3.TipoDeLetra = 3) THEN 'C'
+    WHEN (TC3.TipoDeLetra = 5) THEN 'M'
+    ELSE ' '
+    END AS LetraComprobanteRelacionado,
+    fNumeroCompleto(C3.Id,3) AS NumeroComprobanteRelacionado
 FROM Comprobantes C2
 INNER JOIN ConceptosImpositivos CI    ON C2.ConceptoImpositivo = CI.Id
 INNER JOIN Comprobantes C             ON C.Id                  = C2.ComprobantePadre
@@ -235,6 +446,9 @@ INNER JOIN TiposDeComprobantes  TC    ON C.TipoDeComprobante   = TC.Id
 INNER JOIN PuntosDeVentas PV          ON C.Punto               = PV.Id
 INNER JOIN ComprobantesRetenciones CR ON CR.Comprobante        = C2.Id AND CR.ComprobantePadre = C.Id
 INNER JOIN Personas P                 ON P.Id                  = C.Persona
+INNER JOIN ComprobantesRelacionados CR3 ON CR3.ComprobantePadre  = C.Id
+INNER JOIN Comprobantes             C3  ON C3.Id                 = CR3.ComprobanteHijo
+INNER JOIN TiposDeComprobantes      TC3 ON TC3.Id                = C3.TipoDeComprobante
 WHERE C2.FechaEmision BETWEEN STR_TO_DATE(CONCAT("{PERIODO}",'-01'), '%Y-%m-%d') AND STR_TO_DATE(LAST_DAY(CONCAT("{PERIODO}",'-01')), '%Y-%m-%d')
   AND C.Cerrado = 1
   AND CI.EsRetencion    = 1
@@ -281,12 +495,12 @@ ORDER BY C.FechaEmision
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
- 	 <property name="type">a4</property>
-         <property name="leftMargin">0.15in</property>
-         <property name="rightMargin">0.15in</property>
-         <property name="orientation">landscape</property>
-         <property name="showHeaderOnFirst">true</property>
-         <property name="showFooterOnLast">true</property>
+            <property name="type">a4</property>
+            <property name="orientation">landscape</property>
+            <property name="leftMargin">0.15in</property>
+            <property name="rightMargin">0.15in</property>
+            <property name="showHeaderOnFirst">true</property>
+            <property name="showFooterOnLast">true</property>
         </simple-master-page>
     </page-setup>
     <body>
@@ -367,7 +581,25 @@ ORDER BY C.FechaEmision
                     <property name="name">ContribuyenteConvMultilateral</property>
                     <expression name="expression" type="javascript">dataSetRow["ContribuyenteConvMultilateral"]</expression>
                     <property name="dataType">string</property>
-                </structure>             
+                </structure>
+                <structure>
+                    <property name="name">FechaComprobanteRelacionado</property>
+                    <expression name="expression" type="javascript">dataSetRow["FechaComprobanteRelacionado"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">LetraComprobanteRelacionado</property>
+                    <expression name="expression" type="javascript">dataSetRow["LetraComprobanteRelacionado"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">NumeroComprobanteRelacionado</property>
+                    <expression name="expression" type="javascript">dataSetRow["NumeroComprobanteRelacionado"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="2550"/>
             <column id="2551"/>
@@ -379,66 +611,100 @@ ORDER BY C.FechaEmision
             <column id="2557"/>
             <column id="2558"/>
             <column id="2559"/>
+            <column id="2652"/>
+            <column id="2656"/>
+            <column id="2660"/>
             <header>
                 <row id="2493">
                     <cell id="2494">
                         <label id="2568">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">left</property>
                             <text-property name="text">Razon Social</text-property>
                         </label>
                     </cell>
                     <cell id="2495">
                         <label id="2570">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">left</property>
                             <text-property name="text">Cuit</text-property>
                         </label>
                     </cell>
                     <cell id="2498">
                         <label id="2576">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
-                            <text-property name="text">Numero de Constancia</text-property>
+                            <text-property name="text">Numero Constancia</text-property>
                         </label>
                     </cell>
                     <cell id="2499">
                         <label id="2578">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
-                            <text-property name="text">Fecha de la Retencion</text-property>
+                            <text-property name="text">Fecha Retencion</text-property>
                         </label>
                     </cell>
                     <cell id="2501">
                         <label id="2582">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
-                            <text-property name="text">Tipo de Comprobante</text-property>
+                            <text-property name="text">Tipo Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2503">
                         <label id="2586">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">Numero Comprobante</text-property>
                         </label>
                     </cell>
                     <cell id="2604">
                         <label id="2620">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">Importe Base</text-property>
                         </label>
                     </cell>
                     <cell id="2616">
                         <label id="2622">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">Alicuota</text-property>
                         </label>
                     </cell>
                     <cell id="2612">
                         <label id="2624">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">Importe Retenido</text-property>
                         </label>
                     </cell>
                     <cell id="2504">
                         <label id="2588">
+                            <property name="fontSize">7pt</property>
                             <property name="textAlign">right</property>
-                            <text-property name="text">Contribuyente Conv Multilateral</text-property>
+                            <text-property name="text">Contrib. Conv. Multilateral</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2649">
+                        <label id="2661">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Fecha</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2653">
+                        <label id="2662">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Tipo Factura</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2657">
+                        <label id="2663">
+                            <property name="fontSize">7pt</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">Número</text-property>
                         </label>
                     </cell>
                 </row>
@@ -508,12 +774,30 @@ ORDER BY C.FechaEmision
                         </data>
                     </cell>
                     <cell id="2523">
-                        <data id="2589">        
+                        <data id="2589">
                             <property name="textAlign">right</property>
                             <property name="resultSetColumn">ContribuyenteConvMultilateral</property>
                         </data>
                     </cell>
-                </row>     
+                    <cell id="2650">
+                        <data id="2664">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">FechaComprobanteRelacionado</property>
+                        </data>
+                    </cell>
+                    <cell id="2654">
+                        <data id="2665">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">LetraComprobanteRelacionado</property>
+                        </data>
+                    </cell>
+                    <cell id="2658">
+                        <data id="2666">
+                            <property name="textAlign">right</property>
+                            <property name="resultSetColumn">NumeroComprobanteRelacionado</property>
+                        </data>
+                    </cell>
+                </row>
             </detail>
             <footer>
                 <row id="2531">
@@ -527,6 +811,9 @@ ORDER BY C.FechaEmision
                     <cell id="2539"/>
                     <cell id="2540"/>
                     <cell id="2541"/>
+                    <cell id="2651"/>
+                    <cell id="2655"/>
+                    <cell id="2659"/>
                 </row>
             </footer>
         </table>

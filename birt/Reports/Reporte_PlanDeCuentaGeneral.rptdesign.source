@@ -1,20 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.21" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
-    <list-property name="propertyBindings">
-        <structure>
-            <property name="name">queryText</property>
-            <property name="id">2548</property>
-        </structure>
-        <structure>
-            <property name="name">queryTimeOut</property>
-            <property name="id">2548</property>
-        </structure>
-        <structure>
-            <property name="name">rowFetchSize</property>
-            <property name="id">2548</property>
-        </structure>
-    </list-property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
@@ -67,7 +53,6 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="idLibroIVADesde" id="2544">
-            <text-property name="promptText"></text-property>
             <property name="valueType">static</property>
             <property name="isRequired">false</property>
             <property name="dataType">integer</property>
@@ -81,7 +66,6 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="idLibroIVAHasta" id="2549">
-            <text-property name="promptText"></text-property>
             <property name="valueType">static</property>
             <property name="isRequired">false</property>
             <property name="dataType">integer</property>
@@ -182,28 +166,10 @@
                     <text-property name="heading">descripcion</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">Debe_Saldo_Inicio</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">Debe_Saldo_Inicio</text-property>
-                    <text-property name="heading">Debe_Saldo_Inicio</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Haber_Saldo_Inicio</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">Haber_Saldo_Inicio</text-property>
-                    <text-property name="heading">Haber_Saldo_Inicio</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Debe_Saldo_Cierre</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">Debe_Saldo_Cierre</text-property>
-                    <text-property name="heading">Debe_Saldo_Cierre</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">Haber_Saldo_Cierre</property>
-                    <property name="analysis">measure</property>
-                    <text-property name="displayName">Haber_Saldo_Cierre</text-property>
-                    <text-property name="heading">Haber_Saldo_Cierre</text-property>
+                    <property name="columnName">Saldo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Saldo</text-property>
+                    <text-property name="heading">Saldo</text-property>
                 </structure>
             </list-property>
             <list-property name="parameters"/>
@@ -231,23 +197,8 @@
                     </structure>
                     <structure>
                         <property name="position">5</property>
-                        <property name="name">Debe_Saldo_Inicio</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">6</property>
-                        <property name="name">Haber_Saldo_Inicio</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">7</property>
-                        <property name="name">Debe_Saldo_Cierre</property>
-                        <property name="dataType">decimal</property>
-                    </structure>
-                    <structure>
-                        <property name="position">8</property>
-                        <property name="name">Haber_Saldo_Cierre</property>
-                        <property name="dataType">decimal</property>
+                        <property name="name">Saldo</property>
+                        <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
@@ -283,39 +234,19 @@
                 </structure>
                 <structure>
                     <property name="position">5</property>
-                    <property name="name">Debe_Saldo_Inicio</property>
-                    <property name="nativeName">Debe_Saldo_Inicio</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">6</property>
-                    <property name="name">Haber_Saldo_Inicio</property>
-                    <property name="nativeName">Haber_Saldo_Inicio</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">7</property>
-                    <property name="name">Debe_Saldo_Cierre</property>
-                    <property name="nativeName">Debe_Saldo_Cierre</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
-                </structure>
-                <structure>
-                    <property name="position">8</property>
-                    <property name="name">Haber_Saldo_Cierre</property>
-                    <property name="nativeName">Haber_Saldo_Cierre</property>
-                    <property name="dataType">decimal</property>
-                    <property name="nativeDataType">3</property>
+                    <property name="name">Saldo</property>
+                    <property name="nativeName">Saldo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[SELECT p.Jerarquia_1,
        p.Descripcion_1,
        p.Jerarquia,
        p.Descripcion,
-       ROUND(SUM( CASE WHEN {SELECTQUERY1} THEN ( CASE WHEN d.Comprobante_Multiplicador = -1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Debe_Saldo_Inicio, 
-       ROUND(SUM( CASE WHEN {SELECTQUERY1} THEN ( CASE WHEN d.Comprobante_Multiplicador =  1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Haber_Saldo_Inicio, 
+       p.Saldo,
+       ROUND(SUM( CASE WHEN {SELECTQUERY1} THEN ( CASE WHEN d.Comprobante_Multiplicador = -1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Debe_Saldo_Inicio,
+       ROUND(SUM( CASE WHEN {SELECTQUERY1} THEN ( CASE WHEN d.Comprobante_Multiplicador =  1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Haber_Saldo_Inicio,
        ROUND(SUM( CASE WHEN {SELECTQUERY2} THEN ( CASE WHEN d.Comprobante_Multiplicador = -1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Debe_Saldo_Cierre,
        ROUND(SUM( CASE WHEN {SELECTQUERY2} THEN ( CASE WHEN d.Comprobante_Multiplicador =  1 THEN d.Articulo_SubTotal ELSE 0 END ) ELSE 0 END ), 2) AS Haber_Saldo_Cierre
 FROM  (
@@ -340,19 +271,19 @@ SELECT
 FROM comprobantesdetalles cd
 INNER JOIN comprobantes c            ON c.Id   = cd.Comprobante
 INNER JOIN personas p                ON p.Id   = c.Persona
-INNER JOIN {FROMQUERY1} l            ON l.Id   = c.LibroIva 
+INNER JOIN {FROMQUERY1} l            ON l.Id   = c.LibroIva
 LEFT JOIN articulos a                ON a.Id   = cd.Articulo
 LEFT JOIN planesdecuentas pc         ON pc.Id  = a.Cuenta
 LEFT JOIN planesdecuentas pcc        ON pcc.Id = cd.CuentaCasual
 LEFT JOIN tiposdecomprobantes tc     ON tc.Id  = c.TipoDeComprobante
 WHERE c.Cerrado = 1
   AND c.Anulado = 0
-  AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 ) 
+  AND tc.Grupo NOT IN ( 4, 5, 9, 10, 11 )
   AND ( pcc.Id IS NOT NULL OR pc.Id IS NOT NULL )
-) AS d 
-JOIN  vplanesdecuentasarbol AS p ON p.Id = d.PlanDeCuenta_Id
+) AS d
+JOIN  vplanesdecuentasarboldetalle AS p ON p.Id = d.PlanDeCuenta_Id
 {WHEREQUERY1}
-GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-property>
+GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion, p.Saldo]]></xml-property>
         </oda-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="FiltroLibroDesde" id="2650">
             <list-property name="columnHints">
@@ -587,10 +518,8 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">us-legal</property>
+            <property name="type">a4</property>
             <property name="orientation">landscape</property>
-            <property name="leftMargin">0.15in</property>
-            <property name="rightMargin">0.15in</property>
             <overridden-values>
                 <ref-entry baseId="2434" name="Cabecera" id="2434"/>
                 <ref-entry baseId="2435" id="2435"/>
@@ -798,26 +727,46 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                 <structure>
                     <property name="name">Debe_Saldo_Inicio</property>
                     <text-property name="displayName">Debe_Saldo_Inicio</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Inicio"]</expression>
+                    <expression name="expression" type="javascript">if ( dataSetRow["Saldo"] == 'Deudor' ) {&#13;
+dataSetRow["Debe_Saldo_Inicio"] - dataSetRow["Haber_Saldo_Inicio"]&#13;
+} else {&#13;
+0&#13;
+}</expression>
                     <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">Debe_Saldo_Cierre</property>
                     <text-property name="displayName">Debe_Saldo_Cierre</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Cierre"]</expression>
+                    <expression name="expression" type="javascript">if ( dataSetRow["Saldo"] == 'Deudor' ) {&#13;
+dataSetRow["Debe_Saldo_Cierre"] - dataSetRow["Haber_Saldo_Cierre"]&#13;
+} else {&#13;
+0&#13;
+}</expression>
                     <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">Haber_Saldo_Inicio</property>
                     <text-property name="displayName">Haber_Saldo_Inicio</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Inicio"]</expression>
+                    <expression name="expression" type="javascript">if ( dataSetRow["Saldo"] == 'Acreedor' ) {&#13;
+dataSetRow["Haber_Saldo_Inicio"] - dataSetRow["Debe_Saldo_Inicio"]&#13;
+} else {&#13;
+0&#13;
+}</expression>
                     <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">Haber_Saldo_Cierre</property>
                     <text-property name="displayName">Haber_Saldo_Cierre</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Cierre"]</expression>
+                    <expression name="expression" type="javascript">if ( dataSetRow["Saldo"] == 'Acreedor' ) {&#13;
+dataSetRow["Haber_Saldo_Cierre"] - dataSetRow["Debe_Saldo_Cierre"]&#13;
+} else {&#13;
+0&#13;
+}</expression>
                     <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">Cuenta</property>
@@ -900,6 +849,52 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                     </list-property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">Debe_Saldo_Movimientos</property>
+                    <text-property name="displayName">Debe_Saldo_Movimientos</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Debe_Saldo_Cierre"]-dataSetRow["Debe_Saldo_Inicio"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Haber_Saldo_Movimientos</property>
+                    <text-property name="displayName">Haber_Saldo_Movimientos</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Haber_Saldo_Cierre"]-dataSetRow["Haber_Saldo_Inicio"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Suma_Debe_Movimientos</property>
+                    <text-property name="displayName">Suma_Debe_Movimientos</text-property>
+                    <property name="dataType">decimal</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>AgruparCuentas</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["Debe_Saldo_Cierre"]-dataSetRow["Debe_Saldo_Inicio"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">Suma_Haber_Movimientos</property>
+                    <text-property name="displayName">Suma_Haber_Movimientos</text-property>
+                    <property name="dataType">decimal</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>AgruparCuentas</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["Haber_Saldo_Cierre"]-dataSetRow["Haber_Saldo_Inicio"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <column id="2746">
                 <list-property name="visibility">
@@ -913,17 +908,23 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
             <column id="2642"/>
             <column id="2641">
                 <property name="repeat">1</property>
-                <property name="width">15%</property>
+                <property name="width">10%</property>
             </column>
             <column id="2646">
                 <property name="repeat">1</property>
-                <property name="width">15%</property>
+                <property name="width">10%</property>
+            </column>
+            <column id="2777">
+                <property name="width">10%</property>
+            </column>
+            <column id="2783">
+                <property name="width">10%</property>
             </column>
             <column id="2645">
-                <property name="width">15%</property>
+                <property name="width">10%</property>
             </column>
             <column id="2647">
-                <property name="width">15%</property>
+                <property name="width">10%</property>
             </column>
             <header>
                 <row id="2603">
@@ -931,7 +932,7 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                     <cell id="2606">
                         <label id="2712">
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">10pt</property>
+                            <property name="fontSize">9pt</property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">left</property>
                             <text-property name="text">CUENTA</text-property>
@@ -940,7 +941,7 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                     <cell id="2604">
                         <label id="2708">
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">10pt</property>
+                            <property name="fontSize">9pt</property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">SALDO INICIO DEBE</text-property>
@@ -949,16 +950,34 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                     <cell id="2612">
                         <label id="2709">
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">10pt</property>
+                            <property name="fontSize">9pt</property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">SALDO INICIO HABER</text-property>
                         </label>
                     </cell>
+                    <cell id="2772">
+                        <label id="2784">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">MOVIMIENTOS DEBE</text-property>
+                        </label>
+                    </cell>
+                    <cell id="2778">
+                        <label id="2785">
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="textAlign">right</property>
+                            <text-property name="text">MOVIMIENTOS HABER</text-property>
+                        </label>
+                    </cell>
                     <cell id="2614">
                         <label id="2710">
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">10pt</property>
+                            <property name="fontSize">9pt</property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">SALDO CIERRE DEBE</text-property>
@@ -967,7 +986,7 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                     <cell id="2616">
                         <label id="2711">
                             <property name="fontFamily">"Verdana"</property>
-                            <property name="fontSize">10pt</property>
+                            <property name="fontSize">9pt</property>
                             <property name="fontWeight">bold</property>
                             <property name="textAlign">right</property>
                             <text-property name="text">SALDO CIERRE HABER</text-property>
@@ -1002,7 +1021,7 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                         <cell id="2751"/>
                         <cell id="2752">
                             <data id="2764">
-                                <property name="fontSize">10pt</property>
+                                <property name="fontSize">9pt</property>
                                 <property name="fontWeight">bold</property>
                                 <property name="color">black</property>
                                 <property name="resultSetColumn">Cuenta</property>
@@ -1010,6 +1029,8 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                         </cell>
                         <cell id="2753"/>
                         <cell id="2754"/>
+                        <cell id="2773"/>
+                        <cell id="2779"/>
                         <cell id="2755"/>
                         <cell id="2756"/>
                     </row>
@@ -1043,6 +1064,120 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                                 </structure>
                                 <property name="textAlign">right</property>
                                 <property name="resultSetColumn">Suma_Haber_Saldo_Inicio</property>
+                            </data>
+                        </cell>
+                        <cell id="2775">
+                            <data id="2789">
+                                <property name="backgroundAttachment">scroll</property>
+                                <property name="backgroundPositionX">0%</property>
+                                <property name="backgroundPositionY">0%</property>
+                                <property name="backgroundRepeat">repeat</property>
+                                <property name="fontFamily">"Verdana"</property>
+                                <property name="fontSize">9pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">normal</property>
+                                <property name="fontVariant">normal</property>
+                                <property name="color">black</property>
+                                <property name="textLineThrough">none</property>
+                                <property name="textOverline">none</property>
+                                <property name="textUnderline">none</property>
+                                <property name="borderBottomColor">black</property>
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderBottomWidth">medium</property>
+                                <property name="borderLeftColor">black</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderLeftWidth">medium</property>
+                                <property name="borderRightColor">black</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderRightWidth">medium</property>
+                                <property name="borderTopColor">black</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="borderTopWidth">medium</property>
+                                <property name="marginTop">0pt</property>
+                                <property name="marginLeft">0pt</property>
+                                <property name="marginBottom">0pt</property>
+                                <property name="marginRight">0pt</property>
+                                <property name="paddingTop">1pt</property>
+                                <property name="paddingLeft">1pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <property name="paddingRight">1pt</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Fixed</property>
+                                    <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="letterSpacing">normal</property>
+                                <property name="lineHeight">normal</property>
+                                <property name="orphans">2</property>
+                                <property name="textTransform">none</property>
+                                <property name="whiteSpace">normal</property>
+                                <property name="widows">2</property>
+                                <property name="wordSpacing">normal</property>
+                                <property name="display">block</property>
+                                <property name="pageBreakAfter">auto</property>
+                                <property name="pageBreakBefore">auto</property>
+                                <property name="pageBreakInside">auto</property>
+                                <property name="showIfBlank">false</property>
+                                <property name="canShrink">false</property>
+                                <property name="overflow">hidden</property>
+                                <property name="resultSetColumn">Suma_Debe_Movimientos</property>
+                            </data>
+                        </cell>
+                        <cell id="2781">
+                            <data id="2792">
+                                <property name="backgroundAttachment">scroll</property>
+                                <property name="backgroundPositionX">0%</property>
+                                <property name="backgroundPositionY">0%</property>
+                                <property name="backgroundRepeat">repeat</property>
+                                <property name="fontFamily">"Verdana"</property>
+                                <property name="fontSize">9pt</property>
+                                <property name="fontWeight">bold</property>
+                                <property name="fontStyle">normal</property>
+                                <property name="fontVariant">normal</property>
+                                <property name="color">black</property>
+                                <property name="textLineThrough">none</property>
+                                <property name="textOverline">none</property>
+                                <property name="textUnderline">none</property>
+                                <property name="borderBottomColor">black</property>
+                                <property name="borderBottomStyle">none</property>
+                                <property name="borderBottomWidth">medium</property>
+                                <property name="borderLeftColor">black</property>
+                                <property name="borderLeftStyle">none</property>
+                                <property name="borderLeftWidth">medium</property>
+                                <property name="borderRightColor">black</property>
+                                <property name="borderRightStyle">none</property>
+                                <property name="borderRightWidth">medium</property>
+                                <property name="borderTopColor">black</property>
+                                <property name="borderTopStyle">none</property>
+                                <property name="borderTopWidth">medium</property>
+                                <property name="marginTop">0pt</property>
+                                <property name="marginLeft">0pt</property>
+                                <property name="marginBottom">0pt</property>
+                                <property name="marginRight">0pt</property>
+                                <property name="paddingTop">1pt</property>
+                                <property name="paddingLeft">1pt</property>
+                                <property name="paddingBottom">1pt</property>
+                                <property name="paddingRight">1pt</property>
+                                <structure name="numberFormat">
+                                    <property name="category">Fixed</property>
+                                    <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                </structure>
+                                <property name="textAlign">right</property>
+                                <property name="letterSpacing">normal</property>
+                                <property name="lineHeight">normal</property>
+                                <property name="orphans">2</property>
+                                <property name="textTransform">none</property>
+                                <property name="whiteSpace">normal</property>
+                                <property name="widows">2</property>
+                                <property name="wordSpacing">normal</property>
+                                <property name="display">block</property>
+                                <property name="pageBreakAfter">auto</property>
+                                <property name="pageBreakBefore">auto</property>
+                                <property name="pageBreakInside">auto</property>
+                                <property name="showIfBlank">false</property>
+                                <property name="canShrink">false</property>
+                                <property name="overflow">hidden</property>
+                                <property name="resultSetColumn">Suma_Haber_Movimientos</property>
                             </data>
                         </cell>
                         <cell id="2762">
@@ -1114,6 +1249,120 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                             <property name="resultSetColumn">Haber_Saldo_Inicio</property>
                         </data>
                     </cell>
+                    <cell id="2774">
+                        <data id="2786">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="fontWeight">normal</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">small-caps</property>
+                            <property name="color">#000000</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <property name="resultSetColumn">Debe_Saldo_Movimientos</property>
+                        </data>
+                    </cell>
+                    <cell id="2780">
+                        <data id="2788">
+                            <property name="backgroundAttachment">scroll</property>
+                            <property name="backgroundPositionX">0%</property>
+                            <property name="backgroundPositionY">0%</property>
+                            <property name="backgroundRepeat">repeat</property>
+                            <property name="fontFamily">"Verdana"</property>
+                            <property name="fontSize">9pt</property>
+                            <property name="fontWeight">normal</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">small-caps</property>
+                            <property name="color">#000000</property>
+                            <property name="textLineThrough">none</property>
+                            <property name="textOverline">none</property>
+                            <property name="textUnderline">none</property>
+                            <property name="borderBottomColor">black</property>
+                            <property name="borderBottomStyle">none</property>
+                            <property name="borderBottomWidth">medium</property>
+                            <property name="borderLeftColor">black</property>
+                            <property name="borderLeftStyle">none</property>
+                            <property name="borderLeftWidth">medium</property>
+                            <property name="borderRightColor">black</property>
+                            <property name="borderRightStyle">none</property>
+                            <property name="borderRightWidth">medium</property>
+                            <property name="borderTopColor">black</property>
+                            <property name="borderTopStyle">none</property>
+                            <property name="borderTopWidth">medium</property>
+                            <property name="marginTop">0pt</property>
+                            <property name="marginLeft">0pt</property>
+                            <property name="marginBottom">0pt</property>
+                            <property name="marginRight">0pt</property>
+                            <property name="paddingTop">1pt</property>
+                            <property name="paddingLeft">1pt</property>
+                            <property name="paddingBottom">1pt</property>
+                            <property name="paddingRight">1pt</property>
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="textAlign">right</property>
+                            <property name="letterSpacing">normal</property>
+                            <property name="lineHeight">normal</property>
+                            <property name="orphans">2</property>
+                            <property name="textTransform">none</property>
+                            <property name="whiteSpace">normal</property>
+                            <property name="widows">2</property>
+                            <property name="wordSpacing">normal</property>
+                            <property name="display">block</property>
+                            <property name="pageBreakAfter">auto</property>
+                            <property name="pageBreakBefore">auto</property>
+                            <property name="pageBreakInside">auto</property>
+                            <property name="showIfBlank">false</property>
+                            <property name="canShrink">false</property>
+                            <property name="overflow">hidden</property>
+                            <property name="resultSetColumn">Haber_Saldo_Movimientos</property>
+                        </data>
+                    </cell>
                     <cell id="2629">
                         <data id="2697">
                             <property name="fontFamily">"Verdana"</property>
@@ -1147,6 +1396,8 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
                     <cell id="2635"/>
                     <cell id="2634"/>
                     <cell id="2639"/>
+                    <cell id="2776"/>
+                    <cell id="2782"/>
                     <cell id="2638"/>
                     <cell id="2640"/>
                 </row>

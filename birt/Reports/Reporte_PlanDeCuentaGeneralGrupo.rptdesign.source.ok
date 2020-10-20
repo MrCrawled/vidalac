@@ -327,7 +327,7 @@ SELECT
   c.Id                        AS Comprobante_Id,
   fNumeroCompleto (c.Id, 'R') AS Comprobante_Numero,
   c.FechaEmision              AS Comprobante_FechaEmision,
-  c.LibroIva                  AS Comprobante_LibroIva,
+  l.Id                        AS Comprobante_LibroIva,
   l.Descripcion               AS Comprobante_LibroIva_Descripcion,
   c.TipoDeComprobante         AS Comprobante_TipoDeComprobante,
   tc.Grupo                    AS Comprobante_GrupoDeComprobante,
@@ -341,7 +341,7 @@ SELECT
 FROM comprobantesdetalles cd
 INNER JOIN comprobantes c            ON c.Id   = cd.Comprobante
 INNER JOIN personas p                ON p.Id   = c.Persona
-INNER JOIN librosIva l               ON l.Id   = c.LibroIva 
+INNER JOIN {FROMQUERY1} l            ON l.Id   = c.LibroIva 
 LEFT JOIN articulos a                ON a.Id   = cd.Articulo
 LEFT JOIN planesdecuentas pc         ON pc.Id  = a.Cuenta
 LEFT JOIN planesdecuentas pcc        ON pcc.Id = cd.CuentaCasual
@@ -725,10 +725,8 @@ GROUP BY p.Jerarquia_1, p.Descripcion_1, p.Jerarquia, p.Descripcion]]></xml-prop
     </styles>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2" extends="CabeceraInterna.Cabecera_y_Pie">
-            <property name="type">us-legal</property>
+            <property name="type">a4</property>
             <property name="orientation">landscape</property>
-            <property name="leftMargin">0.15in</property>
-            <property name="rightMargin">0.15in</property>
             <overridden-values>
                 <ref-entry baseId="2434" name="Cabecera" id="2434"/>
                 <ref-entry baseId="2435" id="2435"/>

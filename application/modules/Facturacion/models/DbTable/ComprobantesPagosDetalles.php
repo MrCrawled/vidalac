@@ -199,7 +199,7 @@ abstract class Facturacion_Model_DbTable_ComprobantesPagosDetalles extends Factu
             // Agrego el pago, en esta instancia no se controla si el monto de la caja es suficiente
             // esta tarea se realiza al cerrar el pago.
             $pago = $this->createRow();
-            $pago->Observaciones  = 'Contado';
+            $pago->Observaciones  = 'Efectivo';
             $pago->Comprobante    = $idComprobante;
             $pago->Caja           = $Caja;
             $pago->PrecioUnitario = $Monto;

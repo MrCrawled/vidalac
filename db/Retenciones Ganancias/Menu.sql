@@ -1,1 +1,10 @@
-INSERT INTO vidalac.modulos (Nombre,Titulo,Controlador,Accion,Parametros,Modulo,Descripcion) VALUES ('TiposDeImpuestosGananciasRetencionesdefault',NULL,'abm','index','/m/Base/model/TiposDeImpuestosGananciasRetenciones','Window','');
+INSERT INTO `vidalac`.`modulos`(`Id`, `Nombre`, `Titulo`, `Controlador`, `Accion`, `Parametros`, `Modulo`, `Descripcion`) VALUES (756, 'ReporteRetencionesGanancias', NULL, 'ReporteRetencionesGanancias', NULL, NULL, 'Contable', NULL);
+INSERT INTO `vidalac`.`modulos`(`Id`, `Nombre`, `Titulo`, `Controlador`, `Accion`, `Parametros`, `Modulo`, `Descripcion`) VALUES (757, 'ReporteRetencionesSuss', NULL, 'ReporteRetencionesSuss', NULL, NULL, 'Contable', NULL);
+INSERT INTO `vidalac`.`modulos`(`Id`, `Nombre`, `Titulo`, `Controlador`, `Accion`, `Parametros`, `Modulo`, `Descripcion`) VALUES (758, 'ReporteRetencionesIva', NULL, 'ReporteRetencionesIva', NULL, NULL, 'Contable', NULL);
+INSERT INTO `vidalac`.`modulos`(`Id`, `Nombre`, `Titulo`, `Controlador`, `Accion`, `Parametros`, `Modulo`, `Descripcion`) VALUES (759, 'ReporteSicore', NULL, 'ReporteSicore', NULL, NULL, 'Contable', NULL);
+INSERT INTO `vidalac`.`modulos` (Nombre,Titulo,Controlador,Accion,Parametros,Modulo,Descripcion) VALUES ('TiposDeImpuestosGananciasRetencionesdefault',NULL,'abm','index','/m/Base/model/TiposDeImpuestosGananciasRetenciones','Window','');
+
+INSERT INTO `vidalac`.`menuesprincipales`(`Id`, `Texto`, `MenuPrincipal`, `Modulo`, `Activo`, `TienePanel`, `Orden`, `Icono`, `PanelAncho`, `PanelAlto`) VALUES (437, 'Rep. de Retenciones Ganancias Realizadas', 409, 756, 1, 0, 0, 'reportes', NULL, NULL);
+INSERT INTO `vidalac`.`menuesprincipales`(`Id`, `Texto`, `MenuPrincipal`, `Modulo`, `Activo`, `TienePanel`, `Orden`, `Icono`, `PanelAncho`, `PanelAlto`) VALUES (438, 'Rep. de retenciones SUSS', 409, 757, 1, 0, 0, 'reportes', NULL, NULL);
+INSERT INTO `vidalac`.`menuesprincipales`(`Id`, `Texto`, `MenuPrincipal`, `Modulo`, `Activo`, `TienePanel`, `Orden`, `Icono`, `PanelAncho`, `PanelAlto`) VALUES (439, 'Rep. de retenciones IVA', 409, 758, 1, 0, 0, 'reportes', NULL, NULL);
+INSERT INTO `vidalac`.`menuesprincipales`(`Id`, `Texto`, `MenuPrincipal`, `Modulo`, `Activo`, `TienePanel`, `Orden`, `Icono`, `PanelAncho`, `PanelAlto`) VALUES (440, 'Reporte SICORE', 409, 759, 1, 0, 0, 'reportes', NULL, NULL);

@@ -92,7 +92,6 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         $config->title = 'Imp. Ganancias Proveedores';
         $config->loadAuto = false;
         $config->id = $this->getName() . '_GridProveedoresImpuestosGanancias';
-        $config->fetch = 'ParaProveedores';
         $config->iniSection = 'minimoProveedor';
         $this->view->gridProveedoresImpuestosGanancias = $this->view->radGrid(
             'Base_Model_DbTable_ProveedoresImpuestosGanancias',
@@ -318,6 +317,12 @@ class Base_AdministrarProveedoresController extends Rad_Window_Controller_Action
         unset($dg);
 
         $dg->id = $this->getName() . '_GridProveedoresIngresosBrutos';
+        $dg->remotefield = 'Persona';
+        $dg->localfield = 'Id';
+        $detailGrids[] = $dg;
+        unset($dg);
+
+    	$dg->id = $this->getName() . '_GridProveedoresImpuestosGanancias';
         $dg->remotefield = 'Persona';
         $dg->localfield = 'Id';
         $detailGrids[] = $dg;

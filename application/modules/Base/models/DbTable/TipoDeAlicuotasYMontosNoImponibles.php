@@ -1,11 +1,11 @@
 <?php
 require_once 'Rad/Db/Table.php';
 
-class Base_Model_DbTable_TiposDeImpuestosGananciasRetenciones extends Rad_Db_Table
+class Base_Model_DbTable_TipoDeAlicuotasYMontosNoImponibles extends Rad_Db_Table
 {
 
     // Tabla
-    protected $_name = "TiposDeImpuestosGananciasRetenciones";
+    protected $_name = "TipoDeAlicuotasYMontosNoImponibles";
     protected $_sort = array('Codigo asc');
     protected $_defaultSource = self::DEFAULT_CLASS;
 

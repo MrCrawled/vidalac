@@ -142,7 +142,6 @@ class Rrhh_Model_DbTable_ConveniosCategoriasDetalles extends Rad_Db_Table
 
                 $this->cerrarPeriodoAnterior($data,$row->Id);
             }
-            //Rad_Log::debug($data);
             // inserto el registro
             parent::update($data,"Id =".$row->Id);
 

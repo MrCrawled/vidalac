@@ -70,14 +70,12 @@ class Rrhh_Model_DbTable_Convenios extends Rad_Db_Table
             $model_ConceptosPorConvenios        = new Liquidacion_Model_DbTable_VariablesDetalles_ConceptosLiquidacionesDetallesConvenios;
             $model_ConceptosPorCategorias       = new Liquidacion_Model_DbTable_VariablesDetalles_ConceptosLiquidacionesDetallesCategorias;
 
-            //throw new Rad_Db_Table_Exception("Llego  ".$nombre."  -  : ".$idConvenio);
-            Rad_Log::debug('llegoooooooooooooooooooooooooooooooo');
+
             //ingreso el convenio nuevo
             $dataConvenio = array(
                 'Descripcion'           => $nombre
             );            
             $id = $this->insert($dataConvenio);
-            Rad_Log::debug('pasooooooooooooooooooooooooooooo');
             //recorro las licencias del convenio
             $row_ConveniosLicencias = $model_ConveniosLicencias->fetchAll("Convenio = ".$idConvenio);    
 

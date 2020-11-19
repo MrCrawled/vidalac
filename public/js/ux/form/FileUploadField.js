@@ -12,7 +12,7 @@ Ext.ux.form.FileUploadField = Ext.extend(Ext.form.TextField,  {
      * 'Browse...').  Note that if you supply a value for {@link #buttonCfg}, the buttonCfg.text
      * value will be used instead if available.
      */
-    buttonText: 'Browse...',
+    buttonText: 'Examinar...',
     /**
      * @cfg {Boolean} buttonOnly True to display the file upload field as a button with no visible
      * text field (defaults to false).  If true, all inherited TextField members will still be available.

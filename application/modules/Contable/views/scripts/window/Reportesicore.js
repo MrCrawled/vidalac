@@ -43,7 +43,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
     {
         return {
             xtype: 'form',
-            url : '/Base/ReporteRetencionesPercepciones/verreporte',
+            url : '/Contable/ReporteSicore/verreporte',
             layout: 'form',
             border: false,
             bodyStyle: 'padding:10px',
@@ -51,29 +51,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                 border: false
             },
             items: [
-                {
-                  
-                    xtype: 'xcombo',
-                    store: new Ext.data.ArrayStore({
-                        fields: ['desc', 'id'],
-                        data : [
-                                ['SIAGER - Retenciones', '1'],
-                                ['SIAGER - Percepciones', '2'],
-                        ]
-                    }),
-                    value: 1,
-                    anchor: '95%',
-                    alowBlank: false,
-                    displayField:'desc',
-                    valueField: 'id',
-                    typeAhead: true,
-                    fieldLabel: 'Modelo',
-                    name: 'modelo',
-                    mode: 'local',
-                    forceSelection: true,
-                    triggerAction: 'all',
-                    selectOnFocus:true
-                },
                 {
                     xtype: 'xcombo',
                     displayField: 'Descripcion',
@@ -120,13 +97,6 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                        values = this.ownerCt.ownerCt.getForm().getValues();
                        var  params = '';
 
-                       if (values.modelo) {
-                           params += '/modelo/'+values.modelo;
-                       } else {
-                           Ext.Msg.alert('Atencion', 'Debe seleccionar un modelo de reporte');
-                           return;
-                       }
-
                        if (values.periodo) {
                            params += '/libro/'+values.periodo;
                        } else {
@@ -142,10 +112,10 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                        }
                          app.publish('/desktop/modules/js/commonApps/showUrl.js', {
                            action: 'launch',
-                           url: '/Base/ReporteRetencionesPercepciones/verreporte'+params,
+                           url: '/Contable/ReporteSicore/verreporte'+params,
                            width: 900,
                            height: 500,
-                           title: 'Reporte SIAGER'
+                           title: 'Reporte Sicore'
                        });
                     }
                 }

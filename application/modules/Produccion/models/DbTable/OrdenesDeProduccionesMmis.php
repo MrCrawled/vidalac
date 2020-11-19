@@ -87,7 +87,6 @@ class Produccion_Model_DbTable_OrdenesDeProduccionesMmis extends Rad_Db_Table
                     $row->setCalculatedField('productoDescripcion', $r['productoDescripcion']);
                     $row->setCalculatedField('UnidadDeMedidaProducto', $r['productoUM']);
                     $row->setCalculatedField('TipoUnidadDeMedidaProducto', $r['productoTipoUM']);
-                    // Rad_Log::debug($row->Id.' '.$row->getCalculatedField('UnidadDeMedidaProductoDescripcion'));
                     return $r['productoCantTotal'];
                 }
             );

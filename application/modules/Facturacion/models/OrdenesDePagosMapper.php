@@ -16,7 +16,17 @@ class Facturacion_Model_OrdenesDePagosMapper extends Rad_Mapper
     
     public function getTotalRetenciones($id)
     {
-        return $this->_model->recuperarMontoRetencion($id);
+        return $this->_model->recuperarMontoTotalRetenciones($id);
+    }
+    
+    public function getTotalRetencionesIB($id)
+    {
+        return $this->_model->recuperarMontoTotalRetencionesIB($id);
+    }
+    
+    public function getTotalRetencionesGanancias($id)
+    {
+        return $this->_model->recuperarMontoTotalRetencionesGanancias($id);
     }
     
     public function getControlTotalConcepto($id)

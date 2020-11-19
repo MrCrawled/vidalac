@@ -610,13 +610,16 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                 //Rad_Log::debug("MontoPorPagar : ".$MontoPorPagar);
                 $MontoPagado = $this->recuperarMontoTotalNGPagadoSobrePeriodo($idConcepto, $idComprobante);
                 //Rad_Log::debug("MontoPagado : ".$MontoPagado);
-                if ( ( $MontoPagado + $MontoPorPagar ) <= $row['MontoMinimoRetencion'] ) {
-                    $MontoImponible = 0;
+                $MontoImponible = 0;
+                if ( $MontoPorPagar >= $row['MontoMinimoRetencion'] ) {
+                    $MontoImponible = round( $MontoPorPagar - $row['MontoMinimoRetencion'], 2);
                 } else {
-                    $MontoImponible = round( ( $MontoPagado + $MontoPorPagar ) - $row['MontoMinimoRetencion'], 2);
+                   if ( ( $MontoPagado + $MontoPorPagar ) >= $row['MontoMinimoRetencion'] ) {
+                       $MontoImponible = round( ( $MontoPagado + $MontoPorPagar ) - $row['MontoMinimoRetencion'], 2);
+                    } 
                 }
                 //Rad_Log::debug("MontoImponible : ".$MontoImponible);
- 
+
                 $MontoPorRetener = round( $MontoImponible * ( $row['Porcentaje'] / 100 ), 2 );
                 //Rad_Log::debug("MontoPorRetener : ".$MontoPorRetener);
 
@@ -626,8 +629,6 @@ class Facturacion_Model_DbTable_ComprobantesPagos extends Facturacion_Model_DbTa
                     //Rad_Log::debug("MontoPorRetener : ".$MontoPorRetener);
                     $MontoRetenido = $this->recuperarMontoRetencionesRealizadasSobrePeriodo($idConcepto, $idComprobante);
                     //Rad_Log::debug("MontoRetenido : ".$MontoRetenido);
-                    $MontoPorRetener = $MontoPorRetener - $MontoRetenido;
-                    //Rad_Log::debug("MontoPorRetener : ".$MontoPorRetener);
                     $Renglon = array(
                         'Persona' => $idPersona,
                         'ComprobantePadre' => $idComprobante,

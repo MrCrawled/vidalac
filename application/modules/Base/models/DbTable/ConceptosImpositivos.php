@@ -307,4 +307,16 @@ class Base_Model_DbTable_ConceptosImpositivos extends Rad_Db_Table
         $reporte = $this->_db->fetchAll($sql);
         return $reporte;
     }
+
+    public function exportadorSICORE($modelo, $idLibro)
+    {
+        switch ($modelo) {
+            case 1:
+                $sql = "call SICORE_exportador_Retenciones_Ganancias($idLibro)";
+                break;
+        }
+        $reporte = $this->_db->fetchAll($sql);
+        return $reporte;
+    }
+
 }

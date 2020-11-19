@@ -38,23 +38,6 @@ class Rrhh_Model_DbTable_ConveniosLicencias extends Rad_Db_Table
      * Descripcion	-> valor unico
      *
      */
-/*
-    protected $_validators = array(
-        'Descripcion' => array(
-            'NotEmpty',
-            array(
-                'Db_NoRecordExists',
-                'ConveniosLicencias',
-                'Descripcion',
-                'Convenio = {Convenio} AND Descripcion = {Descripcion} AND Id <> {Id}'
-            ),
-            'messages' => array(
-                'Falta ingresar la descripcion.',
-                'El valor que intenta ingresar se encuentra repetido.'
-            )
-	  )
-    );
-*/
 
     public function init() {
         $this->_validators = array(

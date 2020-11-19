@@ -222,9 +222,9 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
         this.wizard.on('next', function (i) {
             switch(i) {
                 case 0:
-                    this.form.submit();
-                    return false;
-                    break;
+                   this.form.submit();
+                   return false;
+                   break;
                 case 1:
                     this.gridAFC.saveRelation();
                     return false;
@@ -385,7 +385,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             activeItem: 0,
             deferredRender : false,
             items: [{
-                    title:'Contado',
+                    title:'Efectivo',
                     bodyStyle:'padding:25px',
                     layout:'form',
                     items:[
@@ -579,7 +579,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
             this.anular(),
             {xtype:'tbseparator'},
                 {
-                text: 'Imprimir Retenciones',
+                text: 'Imprimir Retenciones IB',
                 icon: 'images/printer.png',
                 cls: 'x-btn-text-icon',
                 scope: this.grid,
@@ -597,7 +597,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                           return;
                         }
 
-                        Models.Facturacion_Model_OrdenesDePagosMapper.getTotalRetenciones(
+                        Models.Facturacion_Model_OrdenesDePagosMapper.getTotalRetencionesIB(
                         selected.id,
                         function(result, e) { if(e.status) {
                                                 if ( parseFloat(result).toFixed(2) > 0 ) {
@@ -614,7 +614,7 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                                                 } else { 
 
                                                     Ext.Msg.show({ title: 'Atencion',
-                                                     msg: 'Este registro NO presenta retenciones.',
+                                                     msg: 'Este registro NO presenta retenciones de ingresos brutos.',
                                                      modal: true,
                                                      icon: Ext.Msg.WARNING,
                                                      buttons: Ext.Msg.OK
@@ -630,6 +630,60 @@ Apps.<?=$this->name?> = Ext.extend(RadDesktop.Module, {
                     }
                 }
             },
+  {xtype:'tbseparator'},
+                {
+                text: 'Imprimir Retenciones Ganancias',
+                icon: 'images/printer.png',
+                cls: 'x-btn-text-icon',
+                scope: this.grid,
+                handler: function () {
+                    selected = this.getSelectionModel().getSelected();
+                    if (selected) {
+
+                       if (selected.get('Cerrado')=='0') {
+                          Ext.Msg.show({ title: 'Atencion', 
+                                         msg: 'Este registro aun no esta cerrado.',
+                                         modal: true,
+                                         icon: Ext.Msg.WARNING,
+                                         buttons: Ext.Msg.OK
+                                      });
+                          return;
+                        }
+
+                        Models.Facturacion_Model_OrdenesDePagosMapper.getTotalRetencionesGanancias(
+                        selected.id,
+                        function(result, e) { if(e.status) {
+                                                if ( parseFloat(result).toFixed(2) > 0 ) {
+
+                                                    this.publish('/desktop/modules/Window/birtreporter', {
+                                                        action: 'launch',
+                                                        template: 'RetencionesGanancias',
+                                                        id: selected.id,
+                                                        output: 'pdf',
+                                                        width:  600,
+                                                        height: 800
+                                                    });
+
+                                                } else { 
+
+                                                    Ext.Msg.show({ title: 'Atencion',
+                                                     msg: 'Este registro NO presenta retenciones de ganancias.',
+                                                     modal: true,
+                                                     icon: Ext.Msg.WARNING,
+                                                     buttons: Ext.Msg.OK
+                                                    });
+                                                }
+                                            }
+                        },
+                        this
+                    );
+                        
+                    } else {
+                        Ext.Msg.alert('Atencion', 'Seleccione un registro para ver el reporte');
+                    }
+                }
+            },
+ 
             {xtype: 'tbfill'},
             {
                 icon:	'images/wrench.png',

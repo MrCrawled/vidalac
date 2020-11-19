@@ -98,8 +98,8 @@ class Contable_Model_DbTable_LibrosIVADetalles extends Rad_Db_Table
 
         $Multiplicador = 0;
 
-        // Credito en Cuenta Corriente / Debito en Cuenta Corriente / Retencion IB Entre Rios (R) / Percepción IB Entre Rí­os (R)
-        if ($row->TipoDeComprobante == 65 || $row->TipoDeComprobante == 66 || $row->ConceptoImpositivo == 41 || $row->ConceptoImpositivo == 42) {
+        // Credito en Cuenta Corriente / Debito en Cuenta Corriente / Retencion IB Entre Rios (R) / Percepción IB Entre Rí­os (R) / Retenciones de Iva (R) / Retenciones de SUSS (R) / Retenciones Ganancias (R)
+        if ($row->TipoDeComprobante == 65 || $row->TipoDeComprobante == 66 || $row->ConceptoImpositivo == 41 || $row->ConceptoImpositivo == 42 || $row->ConceptoImpositivo == 47 || $row->ConceptoImpositivo == 48 || $row->ConceptoImpositivo == 49) {
             // Comprobante que no se inserta en el libro de IVA, debe mejorarse y crear una columna para estos casos y su correspondiente filtro
             return true;
         } else {

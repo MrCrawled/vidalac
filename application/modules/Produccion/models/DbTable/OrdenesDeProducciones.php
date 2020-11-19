@@ -161,7 +161,6 @@ class Produccion_Model_DbTable_OrdenesDeProducciones extends Rad_Db_Table
 
             $id = parent::insert($data);
 
-            //$this->updateFormulaProducto($data['Articulo'], $data['Cantidad'], $id);
 
             $this->_db->commit();
             return $id;
